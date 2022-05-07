@@ -133,7 +133,7 @@ public class FrmMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegistrarClienteActionPerformed
-         FrmRegistrarCliente frmRegCliente = new FrmRegistrarCliente();
+        FrmRegistrarCliente frmRegCliente = new FrmRegistrarCliente();
         frmRegCliente.setVisible(true);
         
     }//GEN-LAST:event_menuRegistrarClienteActionPerformed
