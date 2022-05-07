@@ -7,6 +7,7 @@ package GUI;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  * Proyecto Final - Casting
@@ -42,8 +43,8 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         txtTelefono = new javax.swing.JTextField();
-        cmbContacto = new javax.swing.JComboBox<>();
         cmbTipoPublicidad = new javax.swing.JComboBox<>();
+        txtContacto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Clientes - Casting");
@@ -66,7 +67,10 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/salir_32_1.gif"))); // NOI18N
         btnSalir.setText("Salir");
+        btnSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -83,21 +87,30 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
 
         jLabel5.setText("Tipo de publicidad");
 
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Floppy.png"))); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
 
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Delete.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
             }
         });
 
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLimpiar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
@@ -106,7 +119,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
 
         txtTelefono.setText(" ");
 
-        cmbTipoPublicidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Moda -Publicidad", "Cine" }));
+        cmbTipoPublicidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------------", "Moda -Publicidad", "Cine" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,20 +138,20 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
                                         .addComponent(jLabel2)
                                         .addComponent(jLabel3))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(83, 83, 83)
-                                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(83, 83, 83)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtContacto)
+                                                .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbContacto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbTipoPublicidad, 0, 166, Short.MAX_VALUE))))
+                                .addComponent(cmbTipoPublicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -148,7 +161,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
                         .addComponent(btnEliminar)
                         .addGap(53, 53, 53)
                         .addComponent(btnLimpiar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 659, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 647, Short.MAX_VALUE)
                         .addComponent(btnSalir)))
                 .addGap(28, 28, 28))
         );
@@ -172,7 +185,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(cmbContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -180,7 +193,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnSalir)
@@ -212,6 +225,33 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
+/**
+ *
+ * Metodo para limpiar todos los campos de texto
+ */
+    public void limpiarCampos(){
+        txtNombre.setText("");
+        txtContacto.setText("");
+        txtDireccion.setText("");
+        txtTelefono.setText("");
+        cmbTipoPublicidad.setSelectedIndex(0);
+        
+    }
+
+/**
+ *
+ * Metodo para validar que esta vacio algún campo de texto
+ */
+    public boolean validacion(){
+        if((txtNombre.getText().length() == 0)||(txtContacto.getText().length() == 0)||(txtDireccion.getText().length() == 0)||
+                (cmbTipoPublicidad.getSelectedIndex() == 0)||(txtTelefono.getText().length() == 0)){
+            JOptionPane.showMessageDialog(null, "Campos sin llenar", "Animal", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
  private void centrarVentana() {
         Dimension screenSize, frameSize;
         int x, y;
@@ -227,7 +267,6 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JComboBox<String> cmbContacto;
     private javax.swing.JComboBox<String> cmbTipoPublicidad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -236,6 +275,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField txtContacto;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
