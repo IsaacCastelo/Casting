@@ -92,6 +92,10 @@ public class FrmMenu extends javax.swing.JFrame {
 
         jMenu2.setText("Ayuda");
 
+<<<<<<< HEAD
+=======
+        menuInfoEquipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/InfoLogo.png"))); // NOI18N
+>>>>>>> e6f62f8350c3dbee7ec501e7c87ee4b02654668b
         menuInfoEquipo.setText("Información");
         menuInfoEquipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,7 +136,11 @@ public class FrmMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegistrarClienteActionPerformed
+<<<<<<< HEAD
          FrmRegistrarCliente frmRegCliente = new FrmRegistrarCliente();
+=======
+        FrmRegistrarCliente frmRegCliente = new FrmRegistrarCliente();
+>>>>>>> e6f62f8350c3dbee7ec501e7c87ee4b02654668b
         frmRegCliente.setVisible(true);
         
     }//GEN-LAST:event_menuRegistrarClienteActionPerformed
@@ -188,10 +196,8 @@ public class FrmMenu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmMenu().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new FrmMenu().setVisible(true);
         });
     }
 
