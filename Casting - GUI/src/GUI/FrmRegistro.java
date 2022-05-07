@@ -110,7 +110,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(204, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("REGISTRO DE CUENTA");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 550, 78));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 590, 78));
 
         jLabel6.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 204, 204));
