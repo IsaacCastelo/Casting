@@ -6,6 +6,9 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +21,7 @@ public class FrmRegistro extends javax.swing.JFrame {
      */
     public FrmRegistro() {
         initComponents();
+        centrarVentana();
     }
 
     /**
@@ -28,15 +32,15 @@ public class FrmRegistro extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        btnRegistrar = new javax.swing.JButton();
+        txtUsuario = new javax.swing.JTextField();
+        txtContrasenia = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
+        txtCurp = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnRegistrar = new javax.swing.JButton();
+        btnIniciarSesion = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -53,26 +57,31 @@ public class FrmRegistro extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(490, 588));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setBackground(new java.awt.Color(153, 153, 153));
-        jButton2.setFont(new java.awt.Font("Dubai Medium", 1, 48)); // NOI18N
-        jButton2.setText("REGISTRAR");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 420, 85));
+        btnRegistrar.setBackground(new java.awt.Color(153, 153, 153));
+        btnRegistrar.setFont(new java.awt.Font("Dubai Medium", 1, 48)); // NOI18N
+        btnRegistrar.setText("REGISTRAR");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 420, 85));
 
-        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField1.setToolTipText("");
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 340, 56));
+        txtUsuario.setBackground(new java.awt.Color(204, 204, 204));
+        txtUsuario.setToolTipText("");
+        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 340, 56));
 
-        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 340, 56));
+        txtContrasenia.setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(txtContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 340, 56));
 
-        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 340, 56));
+        txtNombre.setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 340, 56));
 
-        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 200, 340, 56));
+        txtTelefono.setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 200, 340, 56));
 
-        jTextField6.setBackground(new java.awt.Color(204, 204, 204));
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 290, 340, 56));
+        txtCurp.setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(txtCurp, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 290, 340, 56));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("___________________________________________________________________________________________________________");
@@ -82,29 +91,29 @@ public class FrmRegistro extends javax.swing.JFrame {
         jLabel2.setText("Ya tienes cuenta?");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 590, -1, -1));
 
-        btnRegistrar.setForeground(new java.awt.Color(102, 153, 255));
-        btnRegistrar.setText("Iniciar sesión");
-        btnRegistrar.setBorder(null);
-        btnRegistrar.setBorderPainted(false);
-        btnRegistrar.setContentAreaFilled(false);
-        btnRegistrar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnRegistrar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        btnRegistrar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        btnIniciarSesion.setForeground(new java.awt.Color(102, 153, 255));
+        btnIniciarSesion.setText("Iniciar sesión");
+        btnIniciarSesion.setBorder(null);
+        btnIniciarSesion.setBorderPainted(false);
+        btnIniciarSesion.setContentAreaFilled(false);
+        btnIniciarSesion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnIniciarSesion.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnIniciarSesion.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                btnRegistrarMouseMoved(evt);
+                btnIniciarSesionMouseMoved(evt);
             }
         });
-        btnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnIniciarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnRegistrarMouseExited(evt);
+                btnIniciarSesionMouseExited(evt);
             }
         });
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
+                btnIniciarSesionActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 590, 80, 20));
+        getContentPane().add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 590, 80, 20));
 
         jLabel3.setFont(new java.awt.Font("Dubai Light", 1, 50)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 255, 255));
@@ -146,63 +155,47 @@ public class FrmRegistro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         // TODO add your handling code here:
         new FrmLogin().setVisible(true);
         this.dispose();
+    }//GEN-LAST:event_btnIniciarSesionActionPerformed
+
+    private void btnIniciarSesionMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarSesionMouseMoved
+        // TODO add your handling code here:
+        btnIniciarSesion.setForeground(new Color(220, 46, 75));
+    }//GEN-LAST:event_btnIniciarSesionMouseMoved
+
+    private void btnIniciarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarSesionMouseExited
+        // TODO add your handling code here:
+        btnIniciarSesion.setForeground(new Color(102, 153, 255));
+    }//GEN-LAST:event_btnIniciarSesionMouseExited
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        if (txtUsuario.getText().equals("") || txtContrasenia.getText().equals("") || txtNombre.getText().equals("") || txtTelefono.getText().equals("") || txtCurp.getText().equals("")) 
+        {
+            JOptionPane.showMessageDialog(this, "Un campo esta vacío!", "Error!", JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            this.dispose();
+            new FrmLogin().setVisible(true);
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    private void btnRegistrarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseMoved
-        // TODO add your handling code here:
-        btnRegistrar.setForeground(new Color(220, 46, 75));
-    }//GEN-LAST:event_btnRegistrarMouseMoved
-
-    private void btnRegistrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseExited
-        // TODO add your handling code here:
-        btnRegistrar.setForeground(new Color(102, 153, 255));
-    }//GEN-LAST:event_btnRegistrarMouseExited
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmRegistro().setVisible(true);
-            }
-        });
+     private void centrarVentana() {
+        Dimension screenSize, frameSize;
+        int x, y;
+        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        frameSize = getSize();
+        x = (screenSize.width - frameSize.width) / 2;
+        y = (screenSize.height - frameSize.height) / 2;
+        setLocation(x, y);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -214,10 +207,10 @@ public class FrmRegistro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField txtContrasenia;
+    private javax.swing.JTextField txtCurp;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

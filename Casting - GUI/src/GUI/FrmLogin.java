@@ -6,6 +6,9 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +21,7 @@ public class FrmLogin extends javax.swing.JFrame {
      */
     public FrmLogin() {
         initComponents();
+        centrarVentana();
     }
 
     /**
@@ -28,9 +32,9 @@ public class FrmLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        btnIngresar = new javax.swing.JButton();
+        txtUsuario = new javax.swing.JTextField();
+        txtContrasenia = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
@@ -48,17 +52,22 @@ public class FrmLogin extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(490, 588));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setBackground(new java.awt.Color(153, 153, 153));
-        jButton2.setFont(new java.awt.Font("Dubai Medium", 1, 48)); // NOI18N
-        jButton2.setText("INGRESAR");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 307, 85));
+        btnIngresar.setBackground(new java.awt.Color(153, 153, 153));
+        btnIngresar.setFont(new java.awt.Font("Dubai Medium", 1, 48)); // NOI18N
+        btnIngresar.setText("INGRESAR");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 307, 85));
 
-        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField1.setToolTipText("s");
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 307, 56));
+        txtUsuario.setBackground(new java.awt.Color(204, 204, 204));
+        txtUsuario.setToolTipText("s");
+        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 307, 56));
 
-        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 307, 56));
+        txtContrasenia.setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(txtContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 307, 56));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("_____________________________________________________________");
@@ -136,6 +145,17 @@ public class FrmLogin extends javax.swing.JFrame {
         btnRegistrar.setForeground(new Color(102, 153, 255));
     }//GEN-LAST:event_btnRegistrarMouseExited
 
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        if (txtUsuario.getText().equals("") || txtContrasenia.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Un campo esta vacío!", "Error!", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            this.dispose();
+            FrmMenu frmMenu = new FrmMenu();
+            frmMenu.setVisible(true);
+        }
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -171,10 +191,20 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
     }
+    
+     private void centrarVentana() {
+        Dimension screenSize, frameSize;
+        int x, y;
+        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        frameSize = getSize();
+        x = (screenSize.width - frameSize.width) / 2;
+        y = (screenSize.height - frameSize.height) / 2;
+        setLocation(x, y);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -183,7 +213,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtContrasenia;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
