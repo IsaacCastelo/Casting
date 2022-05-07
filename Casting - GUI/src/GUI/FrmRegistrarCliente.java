@@ -253,7 +253,8 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
     public boolean validarCampos(){
         if((txtNombre.getText().length() == 0)||(txtContacto.getText().length() == 0)||(txtDireccion.getText().length() == 0)||
                 (txtTelefono.getText().length() == 0)){
-            JOptionPane.showMessageDialog(null, "Campos sin llenar", "Animal", JOptionPane.ERROR_MESSAGE);
+                                                        //no sean groseros pobrecito
+            JOptionPane.showMessageDialog(null, "Campos sin llenar", "Animal", JOptionPane.ERROR_MESSAGE);           
             return false;
         }
         else{

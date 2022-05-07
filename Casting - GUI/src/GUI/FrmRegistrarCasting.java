@@ -7,6 +7,7 @@ package GUI;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  * Proyecto Final - Casting
@@ -47,10 +48,10 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblListaFases = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnRegistrarFase = new javax.swing.JButton();
+        btnBorrarFase = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtFechaFase = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Casting - Casting");
@@ -131,14 +132,14 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
 
         jLabel4.setText("Fases");
 
-        jButton1.setText("Registrar Fase");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarFase.setText("Registrar Fase");
+        btnRegistrarFase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRegistrarFaseActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Borrar Fase");
+        btnBorrarFase.setText("Borrar Fase");
 
         jLabel5.setText("Fecha fase:");
 
@@ -186,11 +187,11 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(27, 27, 27)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFechaFase, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(btnRegistrarFase)
                         .addGap(54, 54, 54)
-                        .addComponent(jButton2)
+                        .addComponent(btnBorrarFase)
                         .addGap(112, 112, 112)
                         .addComponent(btnSalir)
                         .addContainerGap())))
@@ -244,10 +245,10 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
                                 .addGap(16, 16, 16))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton1)
-                                    .addComponent(jButton2)
+                                    .addComponent(btnRegistrarFase)
+                                    .addComponent(btnBorrarFase)
                                     .addComponent(jLabel5)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtFechaFase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(41, 41, 41))))))
         );
 
@@ -256,7 +257,9 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
+        if (validarCamposDatos()) {
+            System.out.println("campos llenos");
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -272,9 +275,11 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
         limpiarCampos();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnRegistrarFaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarFaseActionPerformed
+        if (validarCampoFase()) {
+            System.out.println("fase en orden");
+        }
+    }//GEN-LAST:event_btnRegistrarFaseActionPerformed
 
 /**
  *
@@ -289,15 +294,33 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
         
     }
     
+    public boolean validarCamposDatos(){
+        if (txtNombre.getText().length() == 0 || txtIDCasting.getText().length() == 0 || txtDescripcion.getText().length() == 0 
+            || txtCoste.getText().length() == 0 || cmbTipo.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Campos sin llenar", "animal", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        else
+            return true;
+    }
+    
+    public boolean validarCampoFase(){
+        if (txtFechaFase.getText().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Te falto introducir la fecha", "animal", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        else 
+            return true;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBorrarFase;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnRegistrarFase;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cmbTipo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -305,7 +328,6 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblIDCasting;
     private javax.swing.JLabel lblNombre;
@@ -313,6 +335,7 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
     private javax.swing.JTable tblListadoCastings;
     private javax.swing.JTextField txtCoste;
     private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtFechaFase;
     private javax.swing.JTextField txtIDCasting;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables

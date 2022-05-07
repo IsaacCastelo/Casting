@@ -172,7 +172,8 @@ public class FrmRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarSesionMouseExited
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        if (txtUsuario.getText().equals("") || txtContrasenia.getText().equals("") || txtNombre.getText().equals("") || txtTelefono.getText().equals("") || txtCurp.getText().equals("")) 
+        if (txtUsuario.getText().equals("") || txtContrasenia.getText().equals("") || txtNombre.getText().equals("") 
+           || txtTelefono.getText().equals("") || txtCurp.getText().equals("")) 
         {
             JOptionPane.showMessageDialog(this, "Un campo esta vacío!", "Error!", JOptionPane.ERROR_MESSAGE);
         }
