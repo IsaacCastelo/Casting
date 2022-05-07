@@ -14,13 +14,14 @@ import javax.swing.JOptionPane;
  * @author Kevin
  */
 public class FrmMenu extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form FrmMenu
      */
-    public FrmMenu() {
+    public FrmMenu(String usuario) {
         initComponents();
-        centrarVentana();
+        //System.out.println(usuario);
+        txtUsuario.setText(usuario);
     }
 
     /**
@@ -158,6 +159,7 @@ public class FrmMenu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInformacionActionPerformed
@@ -189,17 +191,7 @@ public class FrmMenu extends javax.swing.JFrame {
         frmBuscarCasting.setVisible(true);
     }//GEN-LAST:event_menuBuscarCastingActionPerformed
 
-   
-    
-   private void centrarVentana() {
-        Dimension screenSize, frameSize;
-        int x, y;
-        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        frameSize = getSize();
-        x = (screenSize.width - frameSize.width) / 2;
-        y = (screenSize.height - frameSize.height) / 2;
-        setLocation(x, y);
-    }
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
     private javax.swing.JMenu editMenu;
