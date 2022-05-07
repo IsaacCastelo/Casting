@@ -7,6 +7,7 @@ package GUI;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  * Proyecto Final - Casting
@@ -236,6 +237,21 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
         cmbAltura.setSelectedIndex(0);
         cmbEdad.setSelectedIndex(0);
         
+    }
+    
+/**
+ *
+ * Metodo para limpiar todos los campos de texto
+ */
+    public boolean validarCampos(){
+        if((txtEstado.getText().length() == 0)||(txtCabello.getText().length() == 0)||(txtOjos.getText().length() == 0)||
+                (cmbSexo.getSelectedIndex() == 0)||(cmbAltura.getSelectedIndex() == 0)||(cmbEdad.getSelectedIndex() == 0)){
+            JOptionPane.showMessageDialog(null, "Campos sin llenar", "Animal", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        else{
+            return true;
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
