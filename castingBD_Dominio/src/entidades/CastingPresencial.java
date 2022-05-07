@@ -13,8 +13,8 @@ public class CastingPresencial extends Casting {
     public CastingPresencial() {
     }
 
-    public CastingPresencial(int numPersonas, ObjectId id, String nombre, Direccion direccion, Date fechaContratacion, Cliente cliente, float costo, Agente agente, List<ObjectId> idsPerfiles, List<Perfil> perfiles) {
-        super(id, nombre, direccion, fechaContratacion, cliente, costo, agente, idsPerfiles, perfiles);
+    public CastingPresencial(int numPersonas, ObjectId id, String nombre, Direccion direccion, Date fechaContratacion, ObjectId idCliente, float costo, Agente agente, List<ObjectId> idsPerfiles, List<Perfil> perfiles) {
+        super(id, nombre, direccion, fechaContratacion, idCliente, costo, agente, idsPerfiles, perfiles);
         this.numPersonas = numPersonas;
     }
 

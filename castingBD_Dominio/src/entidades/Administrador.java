@@ -7,8 +7,33 @@ import java.util.Objects;
 import org.bson.types.ObjectId;
 
 public class Administrador extends Persona {
+    private ObjectId id;
     private String usuario;
     private String contraseña;
+
+    public Administrador() {
+    }
+
+    public Administrador(ObjectId id, String usuario, String contraseña, String nombre, String telefono, Direccion direccion, String curp) {
+        super(nombre, telefono, direccion, curp);
+        this.id = id;
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+    }
+
+    public Administrador(String usuario, String contraseña, String nombre, String telefono, String curp) {
+        super(nombre, telefono, curp);
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+    }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
 
     public String getUsuario() {
         return usuario;
@@ -26,26 +51,12 @@ public class Administrador extends Persona {
         this.contraseña = contraseña;
     }
 
-    public Administrador() {
-    }
-
-    public Administrador(String usuario, String contraseña, ObjectId id, String nombre, String telefono, Direccion direccion, String curp) {
-        super(id, nombre, telefono, direccion, curp);
-        this.usuario = usuario;
-        this.contraseña = contraseña;
-    }
-
-    public Administrador(String usuario, String contraseña, ObjectId id, String nombre, String telefono, String curp) {
-        super(id, nombre, telefono, curp);
-        this.usuario = usuario;
-        this.contraseña = contraseña;
-    }
-    
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.usuario);
-        hash = 71 * hash + Objects.hashCode(this.contraseña);
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.usuario);
+        hash = 29 * hash + Objects.hashCode(this.contraseña);
         return hash;
     }
 
@@ -67,12 +78,15 @@ public class Administrador extends Persona {
         if (!Objects.equals(this.contraseña, other.contraseña)) {
             return false;
         }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Administrador{" + "usuario=" + usuario + ", contrase\u00f1a=" + contraseña + '}';
+        return "Administrador{" + "id=" + id + ", usuario=" + usuario + ", contrase\u00f1a=" + contraseña + '}';
     }
     
 }
