@@ -16,13 +16,14 @@ import javax.swing.JOptionPane;
  * @author Saul Armando Reyna Lopez
  */
 public class FrmRegistrarCliente extends javax.swing.JFrame {
+    
+    
 
     /**
      * Creates new form FrmRegistrarCliente
      */
     public FrmRegistrarCliente() {
         initComponents();
-        centrarVentana();
     }
     
     @SuppressWarnings("unchecked")
@@ -207,6 +208,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -214,7 +216,12 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-       
+       if(validarCampos()){
+           if(validarActividad()){
+               //guardar
+               System.out.println("Bien hecho");
+           }
+       }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -222,7 +229,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-       
+       limpiarCampos();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
 /**
@@ -241,27 +248,35 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
 /**
  *
  * Metodo para validar que esta vacio algún campo de texto
+     * @return Regresa falso si hay un campo vacío, regresa verdadero si todos los campos están llenos
  */
-    public boolean validacion(){
+    public boolean validarCampos(){
         if((txtNombre.getText().length() == 0)||(txtContacto.getText().length() == 0)||(txtDireccion.getText().length() == 0)||
-                (cmbTipoPublicidad.getSelectedIndex() == 0)||(txtTelefono.getText().length() == 0)){
-            JOptionPane.showMessageDialog(null, "Campos sin llenar", "Animal", JOptionPane.INFORMATION_MESSAGE);
+                (txtTelefono.getText().length() == 0)){
+            JOptionPane.showMessageDialog(null, "Campos sin llenar", "Animal", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         else{
             return true;
         }
     }
- private void centrarVentana() {
-        Dimension screenSize, frameSize;
-        int x, y;
-        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        frameSize = getSize();
-        x = (screenSize.width - frameSize.width) / 2;
-        y = (screenSize.height - frameSize.height) / 2;
-        setLocation(x, y);
+    
+/**
+ *
+ * Metodo para validar que esté seleccionado un tipo de actividad
+     * @return 
+ */
+    public boolean validarActividad(){
+        if((cmbTipoPublicidad.getSelectedIndex() == 0)){
+            JOptionPane.showMessageDialog(null, "Seleccione una actividad", "Cliente", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        else{
+            return true;
+        }
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
