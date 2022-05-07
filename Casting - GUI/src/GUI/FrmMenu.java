@@ -26,11 +26,16 @@ public class FrmMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         lblLogo = new javax.swing.JLabel();
-        btnRegistrarCasting = new javax.swing.JButton();
-        btnRegistrarPerfil = new javax.swing.JButton();
-        btnRegistrarCliente = new javax.swing.JButton();
-        btnBuscarCasting = new javax.swing.JButton();
-        btnInfo = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        menuCasting = new javax.swing.JMenuItem();
+        menuRegistrarPerfil = new javax.swing.JMenuItem();
+        menuRegistrarCliente = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        menuBuscarCasting = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        menuInfoEquipo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal - Casting");
@@ -38,106 +43,122 @@ public class FrmMenu extends javax.swing.JFrame {
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/LogoCasting.png"))); // NOI18N
         lblLogo.setMaximumSize(new java.awt.Dimension(677, 631));
 
-        btnRegistrarCasting.setText("Registrar Casting");
-        btnRegistrarCasting.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarCastingActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
 
-        btnRegistrarPerfil.setText("Registrar Perfil");
-        btnRegistrarPerfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarPerfilActionPerformed(evt);
-            }
-        });
+        jMenu1.setText("Nuevo");
 
-        btnRegistrarCliente.setText("Registrar Cliente");
-        btnRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
+        menuCasting.setText("Registrar Casting");
+        menuCasting.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarClienteActionPerformed(evt);
+                menuCastingActionPerformed(evt);
             }
         });
+        jMenu1.add(menuCasting);
 
-        btnBuscarCasting.setText("Buscar Casting");
-        btnBuscarCasting.addActionListener(new java.awt.event.ActionListener() {
+        menuRegistrarPerfil.setText("Registrar Perfil");
+        menuRegistrarPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarCastingActionPerformed(evt);
+                menuRegistrarPerfilActionPerformed(evt);
             }
         });
+        jMenu1.add(menuRegistrarPerfil);
 
-        btnInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/InfoLogo.png"))); // NOI18N
-        btnInfo.addActionListener(new java.awt.event.ActionListener() {
+        menuRegistrarCliente.setText("Registrar Cliente");
+        menuRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInfoActionPerformed(evt);
+                menuRegistrarClienteActionPerformed(evt);
             }
         });
+        jMenu1.add(menuRegistrarCliente);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu3.setText("Buscar");
+
+        menuBuscarCasting.setText("Buscar Casting");
+        menuBuscarCasting.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBuscarCastingActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuBuscarCasting);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu2.setText("Ayuda");
+
+        menuInfoEquipo.setText("Información");
+        menuInfoEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInfoEquipoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuInfoEquipo);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegistrarCasting)
-                    .addComponent(btnRegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegistrarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarCasting, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(125, 125, 125))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnInfo)
-                        .addGap(174, 174, 174))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrarCasting, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarCasting, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70)
+                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegistrarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(btnInfo)
-                .addGap(16, 16, 16))
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarCastingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCastingActionPerformed
-        //Registrar el casting
-    }//GEN-LAST:event_btnRegistrarCastingActionPerformed
+    private void menuRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegistrarClienteActionPerformed
+         FrmRegistrarCliente frmRegCliente = new FrmRegistrarCliente();
+        frmRegCliente.setVisible(true);
+        
+    }//GEN-LAST:event_menuRegistrarClienteActionPerformed
 
-    private void btnBuscarCastingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCastingActionPerformed
-        //Buscar el Casting
-    }//GEN-LAST:event_btnBuscarCastingActionPerformed
-
-    private void btnRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarClienteActionPerformed
-        //Registrar el cliente
-    }//GEN-LAST:event_btnRegistrarClienteActionPerformed
-
-    private void btnRegistrarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPerfilActionPerformed
-        //Registrar el perfil
-    }//GEN-LAST:event_btnRegistrarPerfilActionPerformed
-
-    private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoActionPerformed
-        //Información del equipo
+    private void menuInfoEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInfoEquipoActionPerformed
         JOptionPane.showMessageDialog(this, "Este proyecto fue realizado por \nAlexandra Iveth Rodriguez Castellanos - 229949\nIsaac Castelo Valenzuela - 216823\nSaul Armando Reyna Lopez - 229256\nDiseño de Software", "Información", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_btnInfoActionPerformed
+    }//GEN-LAST:event_menuInfoEquipoActionPerformed
+
+    private void menuCastingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCastingActionPerformed
+        FrmRegistrarCasting frmRegCasting = new FrmRegistrarCasting();
+        frmRegCasting.setVisible(true);
+    }//GEN-LAST:event_menuCastingActionPerformed
+
+    private void menuRegistrarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegistrarPerfilActionPerformed
+        FrmRegistrarPerfil frmRegPerfil = new FrmRegistrarPerfil();
+        frmRegPerfil.setVisible(true);
+    }//GEN-LAST:event_menuRegistrarPerfilActionPerformed
+
+    private void menuBuscarCastingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBuscarCastingActionPerformed
+        FrmBuscarCasting frmBuscarCasting = new FrmBuscarCasting();
+        frmBuscarCasting.setVisible(true);
+    }//GEN-LAST:event_menuBuscarCastingActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,11 +205,16 @@ public class FrmMenu extends javax.swing.JFrame {
         setLocation(x, y);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscarCasting;
-    private javax.swing.JButton btnInfo;
-    private javax.swing.JButton btnRegistrarCasting;
-    private javax.swing.JButton btnRegistrarCliente;
-    private javax.swing.JButton btnRegistrarPerfil;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblLogo;
+    private javax.swing.JMenuItem menuBuscarCasting;
+    private javax.swing.JMenuItem menuCasting;
+    private javax.swing.JMenuItem menuInfoEquipo;
+    private javax.swing.JMenuItem menuRegistrarCliente;
+    private javax.swing.JMenuItem menuRegistrarPerfil;
     // End of variables declaration//GEN-END:variables
 }
