@@ -14,6 +14,26 @@ public class Cliente {
     private tipoActividad actividad;
     private Persona personaContacto;
 
+    public Cliente() {
+    }
+
+    public Cliente(ObjectId id, String nombre, Direccion direccion, String telefono, tipoActividad actividad, Persona personaContacto) {
+        this.id = id;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.actividad = actividad;
+        this.personaContacto = personaContacto;
+    }
+
+    public Cliente(String nombre, Direccion direccion, String telefono, tipoActividad actividad, Persona personaContacto) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.actividad = actividad;
+        this.personaContacto = personaContacto;
+    }
+
     public ObjectId getId() {
         return id;
     }
@@ -21,7 +41,7 @@ public class Cliente {
     public void setId(ObjectId id) {
         this.id = id;
     }
-
+    
     public String getNombre() {
         return nombre;
     }
@@ -65,12 +85,12 @@ public class Cliente {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.id);
-        hash = 23 * hash + Objects.hashCode(this.nombre);
-        hash = 23 * hash + Objects.hashCode(this.direccion);
-        hash = 23 * hash + Objects.hashCode(this.telefono);
-        hash = 23 * hash + Objects.hashCode(this.actividad);
-        hash = 23 * hash + Objects.hashCode(this.personaContacto);
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.nombre);
+        hash = 59 * hash + Objects.hashCode(this.direccion);
+        hash = 59 * hash + Objects.hashCode(this.telefono);
+        hash = 59 * hash + Objects.hashCode(this.actividad);
+        hash = 59 * hash + Objects.hashCode(this.personaContacto);
         return hash;
     }
 
@@ -111,7 +131,7 @@ public class Cliente {
     public String toString() {
         return "Cliente{" + "id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + ", actividad=" + actividad + ", personaContacto=" + personaContacto + '}';
     }
-    
+
 }
 
 enum tipoActividad{

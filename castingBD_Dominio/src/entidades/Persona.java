@@ -4,10 +4,8 @@
 package entidades;
 
 import java.util.Objects;
-import org.bson.types.ObjectId;
 
 public class Persona {
-    private ObjectId id;
     private String nombre;
     private String telefono;
     private Direccion direccion;
@@ -16,27 +14,17 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(ObjectId id, String nombre, String telefono, Direccion direccion, String curp) {
-        this.id = id;
+    public Persona(String nombre, String telefono, Direccion direccion, String curp) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
         this.curp = curp;
     }
 
-    public Persona(ObjectId id, String nombre, String telefono, String curp) {
-        this.id = id;
+    public Persona(String nombre, String telefono, String curp) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.curp = curp;
-    }
-
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
     }
     
     public String getNombre() {

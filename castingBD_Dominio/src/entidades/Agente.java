@@ -7,16 +7,32 @@ import java.util.Objects;
 import org.bson.types.ObjectId;
 
 public class Agente extends Persona{
+    private ObjectId id;
     private long numEmpleado;
     private String RFC;
 
     public Agente() {
     }
 
-    public Agente(long numEmpleado, String RFC, ObjectId id, String nombre, String telefono, Direccion direccion, String curp) {
-        super(id, nombre, telefono, direccion, curp);
+    public Agente(ObjectId id, long numEmpleado, String RFC, String nombre, String telefono, Direccion direccion, String curp) {
+        super(nombre, telefono, direccion, curp);
+        this.id = id;
         this.numEmpleado = numEmpleado;
         this.RFC = RFC;
+    }
+
+    public Agente(long numEmpleado, String RFC, String nombre, String telefono, Direccion direccion, String curp) {
+        super(nombre, telefono, direccion, curp);
+        this.numEmpleado = numEmpleado;
+        this.RFC = RFC;
+    }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     public long getNumEmpleado() {
@@ -37,9 +53,10 @@ public class Agente extends Persona{
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 71 * hash + (int) (this.numEmpleado ^ (this.numEmpleado >>> 32));
-        hash = 71 * hash + Objects.hashCode(this.RFC);
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 83 * hash + (int) (this.numEmpleado ^ (this.numEmpleado >>> 32));
+        hash = 83 * hash + Objects.hashCode(this.RFC);
         return hash;
     }
 
@@ -61,12 +78,15 @@ public class Agente extends Persona{
         if (!Objects.equals(this.RFC, other.RFC)) {
             return false;
         }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Agente{" + "numEmpleado=" + numEmpleado + ", RFC=" + RFC + '}';
+        return "Agente{" + "id=" + id + ", numEmpleado=" + numEmpleado + ", RFC=" + RFC + '}';
     }
     
 }
