@@ -92,6 +92,7 @@ public class FrmMenu extends javax.swing.JFrame {
 
         jMenu2.setText("Ayuda");
 
+        menuInfoEquipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/InfoLogo.png"))); // NOI18N
         menuInfoEquipo.setText("Información");
         menuInfoEquipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
