@@ -88,6 +88,6 @@ public class Direccion {
 
     @Override
     public String toString() {
-        return "Direccion{" + "id=" + id + ", calle=" + calle + ", numero=" + numero + ", colonia=" + colonia + '}';
+        return  calle + ", " + numero + ", Colonia " + colonia;
     }
 }

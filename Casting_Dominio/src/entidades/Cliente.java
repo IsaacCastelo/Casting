@@ -11,13 +11,13 @@ public class Cliente {
     private String nombre;
     private Direccion direccion;
     private String telefono;
-    private tipoActividad actividad;
+    private String actividad;
     private Persona personaContacto;
 
     public Cliente() {
     }
 
-    public Cliente(ObjectId id, String nombre, Direccion direccion, String telefono, tipoActividad actividad, Persona personaContacto) {
+    public Cliente(ObjectId id, String nombre, Direccion direccion, String telefono, String actividad, Persona personaContacto) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -26,7 +26,7 @@ public class Cliente {
         this.personaContacto = personaContacto;
     }
 
-    public Cliente(String nombre, Direccion direccion, String telefono, tipoActividad actividad, Persona personaContacto) {
+    public Cliente(String nombre, Direccion direccion, String telefono, String actividad, Persona personaContacto) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -66,11 +66,11 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public tipoActividad getActividad() {
+    public String getActividad() {
         return actividad;
     }
 
-    public void setActividad(tipoActividad actividad) {
+    public void setActividad(String actividad) {
         this.actividad = actividad;
     }
 
