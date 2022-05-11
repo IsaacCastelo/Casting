@@ -6,6 +6,7 @@
 package Interfaces;
 
 import entidades.Cliente;
+import java.util.List;
 
 /**
  *
@@ -13,6 +14,7 @@ import entidades.Cliente;
  */
 public interface IClienteBO {
     void regsistrar(Cliente cliente);
-    void getCliente();
+    void eliminar(Cliente cliente);
+    List<Cliente> getCliente();
     boolean validarClienteExiste(String nombre);
 }

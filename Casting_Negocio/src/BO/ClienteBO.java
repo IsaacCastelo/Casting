@@ -4,8 +4,8 @@ import DAO.ClientesDAO;
 import DAO.ConexionBD;
 import Interfaces.IClienteBO;
 import Interfaces.IClienteDAO;
-import Interfaces.IConexionBD;
 import entidades.Cliente;
+import java.util.List;
 
 /**
  *
@@ -22,8 +22,15 @@ public class ClienteBO implements IClienteBO{
     }
     
     @Override
-    public void getCliente(){
-        clientesDAO.consultarTodos();
+    public void eliminar(Cliente cliente){
+        
+        clientesDAO.eliminar(cliente);
+        
+    }
+    
+    @Override
+    public List<Cliente> getCliente(){
+        return clientesDAO.consultarTodos();
     }
     
     @Override

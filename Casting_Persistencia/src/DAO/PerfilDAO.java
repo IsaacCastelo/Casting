@@ -1,65 +1,59 @@
 /*
- * Clientes
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package DAO;
 
-import Interfaces.IClienteDAO;
 import Interfaces.IConexionBD;
+import Interfaces.IPerfilDAO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import entidades.Cliente;
+import entidades.Perfil;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import org.bson.Document;
-import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
-public class ClientesDAO implements IClienteDAO {
 
+public class PerfilDAO implements IPerfilDAO{
     private IConexionBD conexion;
     private MongoDatabase baseDatos;
     
-    public ClientesDAO(IConexionBD conexion) {
+    public PerfilDAO(IConexionBD conexion) {
         this.conexion = conexion;
         this.baseDatos = this.conexion.crearConexion();
     }
     
-    private MongoCollection<Cliente> getColeccion(){
-        return this.baseDatos.getCollection("Cliente", Cliente.class);
+    private MongoCollection<Perfil> getColeccion(){
+        return this.baseDatos.getCollection("Perfil", Perfil.class);
     }
     
     @Override
-    public boolean agregar(Cliente cliente) {
+    public boolean agregar(Perfil perfil) {
         // TODO: MANEJAR POSIBLES EXCEPCIONES...
-        MongoCollection<Cliente> coleccion = this.getColeccion();
-        coleccion.insertOne(cliente);
+        MongoCollection<Perfil> coleccion = this.getColeccion();
+        coleccion.insertOne(perfil);
         return true;
     }
     
     @Override
-    public boolean eliminar(Cliente cliente) {
+    public List<Perfil> consultarTodos() {
         // TODO: MANEJAR POSIBLES EXCEPCIONES...
-//        MongoCollection<Cliente> coleccion = this.getColeccion();
-        return true;
-    }
-
-    @Override
-    public List<Cliente> consultarTodos() {
-        // TODO: MANEJAR POSIBLES EXCEPCIONES...
-        MongoCollection<Cliente> coleccion = this.getColeccion();
-        List<Cliente> listaClientes = new LinkedList<>();
+        MongoCollection<Perfil> coleccion = this.getColeccion();
+        List<Perfil> listaPerfiles = new LinkedList<>();
         coleccion.find(
             //Filters.and(
                 //Filters.gt("rating", 4), 
                 //Filters.lt("rating", 5))
-        ).into(listaClientes);
-        return listaClientes;
+        ).into(listaPerfiles);
+        return listaPerfiles;
     }
 
     @Override
-    public Cliente consultar(ObjectId idCliente) {
-        MongoCollection<Cliente> coleccion = this.getColeccion();
+    public Perfil consultar(ObjectId idCliente) {
+        MongoCollection<Perfil> coleccion = this.getColeccion();
         List<Document> etapas = new ArrayList<>();
         etapas.add(new Document()
             .append("$match", new Document()
@@ -70,14 +64,14 @@ public class ClientesDAO implements IClienteDAO {
                 .append("localField", "idsRepartidores")
                 .append("foreignField", "_id")
                 .append("as", "repartidores")));
-        List<Cliente> clientes = new LinkedList<>();
-        coleccion.aggregate(etapas).into(clientes);
-        return clientes.get(0);
+        List<Perfil> Perfiles = new LinkedList<>();
+        coleccion.aggregate(etapas).into(Perfiles);
+        return Perfiles.get(0);
     }
     
     @Override
-    public Cliente consultarNombre(String nombre){
-        MongoCollection<Cliente> coleccion = this.getColeccion();
+    public Perfil consultarNombre(String nombre){
+        MongoCollection<Perfil> coleccion = this.getColeccion();
         List<Document> etapas = new ArrayList<>();
         etapas.add(new Document()
             .append("$match", new Document()
@@ -88,9 +82,8 @@ public class ClientesDAO implements IClienteDAO {
                 .append("localField", "idsRepartidores")
                 .append("foreignField", "_id")
                 .append("as", "repartidores")));
-        List<Cliente> clientes = new LinkedList<>();
-        coleccion.aggregate(etapas).into(clientes);
-        return clientes.get(0);
+        List<Perfil> perfiles = new LinkedList<>();
+        coleccion.aggregate(etapas).into(perfiles);
+        return perfiles.get(0);
     }
-    
 }

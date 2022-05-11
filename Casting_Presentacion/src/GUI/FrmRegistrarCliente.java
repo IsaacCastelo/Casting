@@ -6,16 +6,13 @@
 package GUI;
 
 import BO.ClienteBO;
-import DAO.ClientesDAO;
-import DAO.ConexionBD;
 import Interfaces.IClienteBO;
-import Interfaces.IClienteDAO;
 import entidades.Cliente;
 import entidades.Direccion;
 import entidades.Persona;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Proyecto Final - Casting
@@ -32,6 +29,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
      */
     public FrmRegistrarCliente() {
         initComponents();
+        llenarTabla();
     }
     
     @SuppressWarnings("unchecked")
@@ -39,7 +37,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaClientes = new javax.swing.JTable();
         btnSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -63,7 +61,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Clientes - Casting");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -79,7 +77,12 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaClientesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaClientes);
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/salir_32_1.gif"))); // NOI18N
         btnSalir.setText("Salir");
@@ -100,6 +103,18 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         jLabel4.setText("Persona de Contacto");
 
         jLabel5.setText("Tipo de publicidad");
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
+        txtCalle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCalleKeyTyped(evt);
+            }
+        });
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Floppy.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -132,14 +147,37 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         });
 
         txtTelefono.setText(" ");
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
 
-        cmbTipoPublicidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------------", "Moda -Publicidad", "Cine" }));
+        cmbTipoPublicidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------------", "moda -Publicidad", "cine" }));
+
+        txtContacto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtContactoKeyTyped(evt);
+            }
+        });
 
         jLabel6.setText("Calle");
 
         jLabel7.setText("Número");
 
         jLabel8.setText("Colonia");
+
+        txtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroKeyTyped(evt);
+            }
+        });
+
+        txtColonia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtColoniaKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,7 +272,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnSalir)
@@ -261,29 +299,175 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
                //guardar
                Cliente cliente = new Cliente();
                cliente.setNombre(txtNombre.getText());
-               Direccion direccion = new Direccion();
-               direccion.setCalle(txtCalle.getText());
-               direccion.setNumero(txtNumero.getText());
-               direccion.setColonia(txtColonia.getText());
+               Direccion direccion = new Direccion(txtCalle.getText(),txtNumero.getText(),txtColonia.getText());
                cliente.setDireccion(direccion);
                cliente.setTelefono(txtTelefono.getText());
                Persona contacto = new Persona();
                contacto.setNombre(txtContacto.getText());
                cliente.setPersonaContacto(contacto);
-               
-               //cliente.setActividad(ICONIFIED);
+               String elemento=cmbTipoPublicidad.getSelectedItem().toString();
+               if(elemento.equals("Moda -Publicidad")){
+                    String tipo= elemento.substring(0, elemento.indexOf(" -"));
+                    cliente.setActividad(tipo);
+               }
+               else{
+                   cliente.setActividad(elemento);
+               }
                clienteBO.regsistrar(cliente);
            }
        }
+       llenarTabla();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el cliente seleccionado?", "Cliente", JOptionPane.YES_NO_OPTION); 
+        System.out.println(respuesta);
+        if(respuesta == 0){
+            Cliente cliente = new Cliente();
+           cliente.setNombre(txtNombre.getText());
+           Direccion direccion = new Direccion(txtCalle.getText(),txtNumero.getText(),txtColonia.getText());
+           cliente.setDireccion(direccion);
+           cliente.setTelefono(txtTelefono.getText());
+           Persona contacto = new Persona();
+           contacto.setNombre(txtContacto.getText());
+           cliente.setPersonaContacto(contacto);
+           String elemento=cmbTipoPublicidad.getSelectedItem().toString();
+           if(elemento.equals("Moda -Publicidad")){
+                String tipo= elemento.substring(0, elemento.indexOf(" -"));
+                cliente.setActividad(tipo);
+           }
+           else{
+               cliente.setActividad(elemento);
+           }
+            clienteBO.eliminar(cliente);
+        }
+        llenarTabla();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
        limpiarCampos();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        // Metodo para que solo se escriban letras
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+         if (!(minusculas || mayusculas || espacio))
+        {
+            evt.consume();
+        }
+        if (txtNombre.getText().trim().length() == 30) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtContactoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactoKeyTyped
+        // Metodo para que solo se escriban letras
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+         if (!(minusculas || mayusculas || espacio))
+        {
+            evt.consume();
+        }
+        if (txtContacto.getText().trim().length() == 30) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtContactoKeyTyped
+
+    private void txtCalleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCalleKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+         if (!(minusculas || mayusculas || espacio))
+        {
+            evt.consume();
+        }
+        if (txtCalle.getText().trim().length() == 30) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCalleKeyTyped
+
+    private void txtColoniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColoniaKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+         if (!(minusculas || mayusculas || espacio))
+        {
+            evt.consume();
+        }
+        if (txtColonia.getText().trim().length() == 30) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtColoniaKeyTyped
+
+    private void txtNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyTyped
+        // Metodo para que solo se pueda escribir numeros
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        
+        if (!numeros)
+        {
+            evt.consume();
+        }
+
+        if (txtNumero.getText().trim().length() == 5) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNumeroKeyTyped
+
+    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) tablaClientes.getModel();
+        String nombre = model.getValueAt(tablaClientes.getSelectedRow(), 0).toString();
+        String direccion = model.getValueAt(tablaClientes.getSelectedRow(), 1).toString();
+        String telefono = model.getValueAt(tablaClientes.getSelectedRow(), 2).toString();
+        String contacto = model.getValueAt(tablaClientes.getSelectedRow(), 3).toString();
+        String tipo = model.getValueAt(tablaClientes.getSelectedRow(), 4).toString();
+        String colonia = direccion.substring(direccion.indexOf("Colonia "));
+        String numero = direccion.substring(direccion.indexOf(", "), direccion.indexOf(", Colonia "));
+        txtNombre.setText(nombre);
+        txtTelefono.setText(telefono);
+        txtContacto.setText(contacto);
+        txtCalle.setText(direccion.substring(0, direccion.indexOf(",")));
+        txtNumero.setText(numero.substring(2));
+        txtColonia.setText(colonia.substring(8));
+        if(tipo.equalsIgnoreCase("moda")){
+            cmbTipoPublicidad.setSelectedIndex(1);
+        }else{
+            cmbTipoPublicidad.setSelectedIndex(2);
+        }
+    }//GEN-LAST:event_tablaClientesMouseClicked
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        
+        if (!numeros)
+        {
+            evt.consume();
+        }
+
+        if (txtNumero.getText().trim().length() == 5) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
 /**
  *
@@ -294,10 +478,31 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         txtContacto.setText("");
         txtCalle.setText("");
         txtTelefono.setText("");
+        txtNumero.setText("");
+        txtColonia.setText("");
         cmbTipoPublicidad.setSelectedIndex(0);
         
     }
+/**
+ *
+ * Metodo para llenar la tabla
+ */
+    public void llenarTabla() {
+        List<Cliente> productos = clienteBO.getCliente();
+        DefaultTableModel modelo = (DefaultTableModel) tablaClientes.getModel();
+        modelo.setRowCount(0);
+        for (Cliente prov : productos) {
+            Object[] fila = new Object[6];
+            fila[0] = prov.getNombre();
+            fila[1] = prov.getDireccion().toString();
+            fila[2] = prov.getTelefono();
+            fila[3] = prov.getPersonaContacto().getNombre();
+            fila[4] = prov.getActividad();
+            modelo.addRow(fila);
+        }
 
+    }
+    
 /**
  *
  * Metodo para validar que esta vacio algún campo de texto
@@ -345,7 +550,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaClientes;
     private javax.swing.JTextField txtCalle;
     private javax.swing.JTextField txtColonia;
     private javax.swing.JTextField txtContacto;

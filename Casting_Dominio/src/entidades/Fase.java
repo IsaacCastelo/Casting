@@ -11,26 +11,23 @@ public class Fase {
     private ObjectId id;
     private int numero;
     private Date fechaInicio;
-    private Casting casting;
     private List<ObjectId> idsPruebas;
     private List<Prueba> pruebas;
 
     public Fase() {
     }
 
-    public Fase(ObjectId id, int numero, Date fechaInicio, Casting casting, List<ObjectId> idsPruebas, List<Prueba> pruebas) {
+    public Fase(ObjectId id, int numero, Date fechaInicio, List<ObjectId> idsPruebas, List<Prueba> pruebas) {
         this.id = id;
         this.numero = numero;
         this.fechaInicio = fechaInicio;
-        this.casting = casting;
         this.idsPruebas = idsPruebas;
         this.pruebas = pruebas;
     }
 
-    public Fase(int numero, Date fechaInicio, Casting casting) {
+    public Fase(int numero, Date fechaInicio) {
         this.numero = numero;
         this.fechaInicio = fechaInicio;
-        this.casting = casting;
     }
 
     public ObjectId getId() {
@@ -55,14 +52,6 @@ public class Fase {
 
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
-    }
-
-    public Casting getCasting() {
-        return casting;
-    }
-
-    public void setCasting(Casting casting) {
-        this.casting = casting;
     }
 
     public List<ObjectId> getIdsPruebas() {
@@ -93,7 +82,7 @@ public class Fase {
 
     @Override
     public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+        return numero + ", " + fechaInicio;
     }
 
 }
