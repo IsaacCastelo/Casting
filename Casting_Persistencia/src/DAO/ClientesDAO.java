@@ -67,4 +67,22 @@ public class ClientesDAO implements IClienteDAO {
         return clientes.get(0);
     }
     
+    @Override
+    public Cliente consultarNombre(String nombre){
+        MongoCollection<Cliente> coleccion = this.getColeccion();
+        List<Document> etapas = new ArrayList<>();
+        etapas.add(new Document()
+            .append("$match", new Document()
+                .append("nombre", nombre)));
+        etapas.add(new Document()
+            .append("$lookup", new Document()
+                .append("from", "repartidores")
+                .append("localField", "idsRepartidores")
+                .append("foreignField", "_id")
+                .append("as", "repartidores")));
+        List<Cliente> clientes = new LinkedList<>();
+        coleccion.aggregate(etapas).into(clientes);
+        return clientes.get(0);
+    }
+    
 }

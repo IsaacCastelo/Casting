@@ -11,4 +11,5 @@ public interface IClienteDAO {
     boolean agregar(Cliente cliente);
     List<Cliente> consultarTodos();
     Cliente consultar(ObjectId idCliente);
+    Cliente consultarNombre(String nombre);
 }

@@ -4,3 +4,9 @@
 /Casting - GUI/dist/
 /Casting_Dominio/build/
 /Casting_Presentacion/build/
+/Casting_Dominio/nbproject/private/
+/Casting_Negocio/nbproject/private/
+/Casting_Persistencia/nbproject/private/
+/Casting_Presentacion/nbproject/private/
+/Casting_Negocio/build/
+/Casting_Persistencia/build/

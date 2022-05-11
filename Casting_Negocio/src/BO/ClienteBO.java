@@ -1,34 +1,39 @@
 package BO;
 
 import DAO.ClientesDAO;
-import DAO.IClienteDAO;
+import DAO.ConexionBD;
+import Interfaces.IClienteBO;
+import Interfaces.IClienteDAO;
+import Interfaces.IConexionBD;
 import entidades.Cliente;
 
 /**
  *
  * @author Alexandra
  */
-public class ClienteBO {
-    public IClienteDAO clientesDAO = new ClientesDAO();
+public class ClienteBO implements IClienteBO{
+    IClienteDAO clientesDAO = new ClientesDAO(new ConexionBD());  
     
-     public void regsistrar(Cliente cliente){
-        if(clienteNuevo(cliente.getNombre())){
- //           clientesDAO.insert(cliente);
+    @Override
+    public void regsistrar(Cliente cliente){
+        if(!(validarClienteExiste(cliente.getNombre()))){
+            clientesDAO.agregar(cliente);
         }
-        
     }
     
+    @Override
     public void getCliente(){
-        clientesDAO.getClientes();
+        clientesDAO.consultarTodos();
     }
     
-    public boolean clienteNuevo(String nombre){
-        if(clientesDAO.getClientesNombre(nombre)){
-            return true;
+    @Override
+    public boolean validarClienteExiste(String nombre){
+        if(clientesDAO.consultarNombre(nombre)!=null){
+            return false;
         }
         else{
             System.out.println("Nombre repetido");
-            return false;
+            return true;
         }
     }
 }
