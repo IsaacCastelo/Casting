@@ -61,7 +61,8 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
         btnRegistrarFase = new javax.swing.JButton();
         btnBorrarFase = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        datePicker2 = new com.github.lgooddatepicker.components.DatePicker();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Casting - Casting");
@@ -129,8 +130,8 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
         getContentPane().add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 75, -1, -1));
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 71, 194, -1));
 
-        lblIDCasting.setForeground(new java.awt.Color(204, 255, 255));
         lblIDCasting.setText("ID");
+        lblIDCasting.setForeground(new java.awt.Color(204, 255, 255));
         getContentPane().add(lblIDCasting, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 22, -1, -1));
 
         lblFecha.setForeground(new java.awt.Color(204, 255, 255));
@@ -186,10 +187,11 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(204, 255, 255));
         jLabel5.setText("Fecha fase:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 520, -1, -1));
+        getContentPane().add(datePicker2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 190, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Fondo.png"))); // NOI18N
-        jLabel7.setText("jLabel7");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 620));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Fondo.png"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -10, 1070, 630));
 
         pack();
         setLocationRelativeTo(null);
@@ -294,12 +296,13 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cmbTipo;
     private com.github.lgooddatepicker.components.DatePicker datePicker1;
+    private com.github.lgooddatepicker.components.DatePicker datePicker2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblIDCasting;
