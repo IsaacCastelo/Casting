@@ -226,6 +226,9 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
             fecha.setYear(Integer.parseInt(año)-1900);
             fecha.setMonth(Integer.parseInt(mes)-1);
             fecha.setDate(Integer.parseInt(dia));
+            fecha.setHours(0);
+            fecha.setMinutes(0);
+            fecha.setSeconds(0);
             Fase fase = new Fase(numeroFase, fecha);
             faseBO.regsistrar(fase);
             llenarTablaFases();

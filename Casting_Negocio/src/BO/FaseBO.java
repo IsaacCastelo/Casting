@@ -12,6 +12,7 @@ import Interfaces.IFaseDAO;
 import entidades.Fase;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class FaseBO implements IFaseBO{
     IFaseDAO faseDAO = new FaseDAO(new ConexionBD()); 
@@ -31,10 +32,11 @@ public class FaseBO implements IFaseBO{
     
     @Override
     public boolean validarFecha(Date fechaInicio){
-        if(faseDAO.consultarFecha(fechaInicio)!=null){
+        if(faseDAO.consultarFecha(fechaInicio)==null){
             return false;
         }
         else{
+            JOptionPane.showMessageDialog(null, "Fase repetida", "Fase", JOptionPane.ERROR_MESSAGE); 
             return true;
         }
     }

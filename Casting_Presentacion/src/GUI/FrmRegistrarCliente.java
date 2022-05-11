@@ -57,7 +57,6 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtNumero = new javax.swing.JTextField();
         txtColonia = new javax.swing.JTextField();
-        txtDireccion = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -90,7 +89,6 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 679, 354));
 
-        btnSalir.setForeground(new java.awt.Color(0, 0, 0));
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/salir_32_1.gif"))); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -136,7 +134,6 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         });
         getContentPane().add(txtCalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 253, 157, -1));
 
-        btnGuardar.setForeground(new java.awt.Color(0, 0, 0));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Floppy.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -148,7 +145,6 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         });
         getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 392, -1, -1));
 
-        btnEliminar.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Delete.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -160,7 +156,6 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         });
         getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 392, -1, -1));
 
-        btnLimpiar.setForeground(new java.awt.Color(0, 0, 0));
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -215,7 +210,6 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtColonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 345, 157, -1));
-        getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 211, 157, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Fondo.png"))); // NOI18N
         jLabel9.setText("jLabel9");
@@ -383,7 +377,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         txtCalle.setText(direccion.substring(0, direccion.indexOf(",")));
         txtNumero.setText(numero.substring(2));
         txtColonia.setText(colonia.substring(8));
-        if(tipo.equalsIgnoreCase("moda")){
+        if(tipo.equalsIgnoreCase("moda -publicidad")){
             cmbTipoPublicidad.setSelectedIndex(1);
         }else{
             cmbTipoPublicidad.setSelectedIndex(2);
@@ -412,7 +406,6 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
     public void limpiarCampos(){
         txtNombre.setText("");
         txtContacto.setText("");
-        txtDireccion.setText("");
         txtCalle.setText("");
         txtTelefono.setText("");
         txtNumero.setText("");
@@ -492,7 +485,6 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtCalle;
     private javax.swing.JTextField txtColonia;
     private javax.swing.JTextField txtContacto;
-    private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNumero;
     private javax.swing.JTextField txtTelefono;

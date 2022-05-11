@@ -90,7 +90,11 @@ public class ClientesDAO implements IClienteDAO {
                 .append("as", "repartidores")));
         List<Cliente> clientes = new LinkedList<>();
         coleccion.aggregate(etapas).into(clientes);
-        return clientes.get(0);
+        if (clientes.isEmpty()){
+            return null;
+        }else{
+            return clientes.get(0);
+        }
     }
     
 }
