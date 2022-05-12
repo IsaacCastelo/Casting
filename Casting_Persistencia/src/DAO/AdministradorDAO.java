@@ -8,8 +8,10 @@ import Interfaces.IConexionBD;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import entidades.Administrador;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
 public class AdministradorDAO implements IAdministradorDAO{
@@ -45,5 +47,27 @@ public class AdministradorDAO implements IAdministradorDAO{
                 //Filters.lt("rating", 5))
         ).into(listaAdministrador);
         return listaAdministrador;
+    }
+    
+    @Override
+    public Administrador consultarUsuario(String usuario){
+        MongoCollection<Administrador> coleccion = this.getColeccion();
+        List<Document> etapas = new ArrayList<>();
+        etapas.add(new Document()
+            .append("$match", new Document()
+                .append("usuario", usuario)));
+        etapas.add(new Document()
+            .append("$lookup", new Document()
+                .append("from", "repartidores")
+                .append("localField", "idsRepartidores")
+                .append("foreignField", "_id")
+                .append("as", "repartidores")));
+        List<Administrador> Administradores = new LinkedList<>();
+        coleccion.aggregate(etapas).into(Administradores);
+        if (Administradores.isEmpty()){
+            return null;
+        }else{
+            return Administradores.get(0);
+        }
     }
 }

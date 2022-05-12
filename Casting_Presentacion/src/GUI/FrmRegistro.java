@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import BO.AdministradorBO;
+import Interfaces.IAdministradorBO;
+import entidades.Administrador;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -15,6 +18,8 @@ import javax.swing.JOptionPane;
  * @author Maste
  */
 public class FrmRegistro extends javax.swing.JFrame {
+    
+    IAdministradorBO adminBO = new AdministradorBO();
 
     /**
      * Creates new form Login
@@ -172,19 +177,26 @@ public class FrmRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarSesionMouseExited
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        if (txtUsuario.getText().equals("") || txtContrasenia.getText().equals("") || txtNombre.getText().equals("") 
-           || txtTelefono.getText().equals("") || txtCurp.getText().equals("")) 
-        {
-            JOptionPane.showMessageDialog(this, "Un campo esta vacío!", "Error!", JOptionPane.ERROR_MESSAGE);
+        if(validarCampos()){
+           //guardar
+           Administrador admin = new Administrador();
+           admin.setUsuario(txtUsuario.getText());
+           admin.setContraseña(txtContrasenia.getText());
+           admin.setNombre(txtNombre.getText());
+           admin.setTelefono(txtTelefono.getText());
+           admin.setCurp(txtCurp.getText());
+           
+           adminBO.regsistrar(admin);
+           txtUsuario.setText("");
+           txtContrasenia.setText("");
+           txtNombre.setText("");
+           txtTelefono.setText("");
+           txtCurp.setText("");
         }
-        else
-        {
-            this.dispose();
-            new FrmLogin().setVisible(true);
-        }
+        
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
-     private void centrarVentana() {
+    private void centrarVentana() {
         Dimension screenSize, frameSize;
         int x, y;
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -192,6 +204,23 @@ public class FrmRegistro extends javax.swing.JFrame {
         x = (screenSize.width - frameSize.width) / 2;
         y = (screenSize.height - frameSize.height) / 2;
         setLocation(x, y);
+    }
+/**
+ *
+ * Metodo para validar que esta vacio algún campo de texto
+     * @return Regresa falso si hay un campo vacío, regresa verdadero si todos los campos están llenos
+ */
+    public boolean validarCampos(){ 
+    if (txtUsuario.getText().equals("") || txtContrasenia.getText().equals("") || txtNombre.getText().equals("") 
+           || txtTelefono.getText().equals("") || txtCurp.getText().equals("")) 
+        {
+            JOptionPane.showMessageDialog(this, "Un campo esta vacío!", "Error!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

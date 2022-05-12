@@ -9,6 +9,11 @@
             <file>file:/C:/Users/Maste/OneDrive/Documentos/GitHub/Casting/CastingBD_DAO/src/Interfaces/IClienteDAO.java</file>
             <file>file:/C:/Users/Maste/OneDrive/Documentos/GitHub/Casting/CastingBD_DAO/src/DAO/ClientesDAO.java</file>
         </group>
-        <group/>
+        <group>
+            <file>file:/C:/Users/Luis/Documents/GitHub/Casting/Casting_Persistencia/src/Interfaces/IFaseDAO.java</file>
+            <file>file:/C:/Users/Luis/Documents/GitHub/Casting/Casting_Persistencia/src/DAO/FaseDAO.java</file>
+            <file>file:/C:/Users/Luis/Documents/GitHub/Casting/Casting_Persistencia/src/Prueba/Prueba.java</file>
+            <file>file:/C:/Users/Luis/Documents/GitHub/Casting/Casting_Persistencia/src/Interfaces/IClienteDAO.java</file>
+        </group>
     </open-files>
 </project-private>

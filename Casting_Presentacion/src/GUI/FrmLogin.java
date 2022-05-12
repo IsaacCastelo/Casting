@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import BO.AdministradorBO;
+import Interfaces.IAdministradorBO;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -16,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class FrmLogin extends javax.swing.JFrame {
 
+    IAdministradorBO adminBO = new AdministradorBO();
+    
     /**
      * Creates new form Login
      */
@@ -147,13 +151,11 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarMouseExited
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        if (txtUsuario.getText().equals("") || txtContrasenia.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Un campo esta vacío!", "Error!", JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-            this.dispose();
-            FrmMenu frmMenu = new FrmMenu(txtUsuario.getText());
-            frmMenu.setVisible(true);
+        if (validarCampos()){
+            if(adminBO.validarUsuarioContraseña(txtUsuario.getText(), txtContrasenia.getText())){
+                this.dispose();
+                new FrmMenu(txtUsuario.getText()).setVisible(true);
+            }
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
@@ -201,6 +203,21 @@ public class FrmLogin extends javax.swing.JFrame {
         x = (screenSize.width - frameSize.width) / 2;
         y = (screenSize.height - frameSize.height) / 2;
         setLocation(x, y);
+    }
+
+/**
+ *
+ * Metodo para validar que esta vacio algún campo de texto
+     * @return Regresa falso si hay un campo vacío, regresa verdadero si todos los campos están llenos
+ */
+    public boolean validarCampos(){
+        if (txtUsuario.getText().equals("") || txtContrasenia.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Un campo esta vacío!", "Error!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
