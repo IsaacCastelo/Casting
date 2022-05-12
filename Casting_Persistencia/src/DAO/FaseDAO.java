@@ -67,7 +67,11 @@ public class FaseDAO implements IFaseDAO{
                 .append("as", "repartidores")));
         List<Fase> Fases = new LinkedList<>();
         coleccion.aggregate(etapas).into(Fases);
-        return Fases.get(0);
+        if(Fases.isEmpty()){
+            return null;
+        }else{
+            return Fases.get(0);
+        }
     }
     
     @Override
@@ -85,6 +89,10 @@ public class FaseDAO implements IFaseDAO{
                 .append("as", "repartidores")));
         List<Fase> Fases = new LinkedList<>();
         coleccion.aggregate(etapas).into(Fases);
-        return Fases.get(0);
+        if(Fases.isEmpty()){
+            return null;
+        }else{
+            return Fases.get(0);
+        }
     }
 }

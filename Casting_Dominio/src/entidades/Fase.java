@@ -13,6 +13,7 @@ public class Fase {
     private Date fechaInicio;
     private List<ObjectId> idsPruebas;
     private List<Prueba> pruebas;
+    private Casting casting;
 
     public Fase() {
     }

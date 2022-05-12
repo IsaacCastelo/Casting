@@ -5,7 +5,10 @@ import DAO.ConexionBD;
 import Interfaces.IClienteBO;
 import Interfaces.IClienteDAO;
 import entidades.Cliente;
+import entidades.Direccion;
+import entidades.Persona;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,12 +38,13 @@ public class ClienteBO implements IClienteBO{
     
     @Override
     public boolean validarClienteExiste(String nombre){
-        if(clientesDAO.consultarNombre(nombre)!=null){
+        if(clientesDAO.consultarNombre(nombre)==null){
             return false;
         }
         else{
-            System.out.println("Nombre repetido");
+            JOptionPane.showMessageDialog(null, "Nombre repetido", "Cliente", JOptionPane.ERROR_MESSAGE); 
             return true;
         }
     }
+    
 }
