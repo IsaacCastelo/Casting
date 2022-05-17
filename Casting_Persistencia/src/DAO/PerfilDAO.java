@@ -18,12 +18,10 @@ import org.bson.types.ObjectId;
 
 
 public class PerfilDAO implements IPerfilDAO{
-    private IConexionBD conexion;
     private MongoDatabase baseDatos;
     
-    public PerfilDAO(IConexionBD conexion) {
-        this.conexion = conexion;
-        this.baseDatos = this.conexion.crearConexion();
+    public PerfilDAO(MongoDatabase conexion) {
+        this.baseDatos = conexion;
     }
     
     private MongoCollection<Perfil> getColeccion(){

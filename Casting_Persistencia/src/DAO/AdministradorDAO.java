@@ -16,12 +16,10 @@ import org.bson.types.ObjectId;
 
 public class AdministradorDAO implements IAdministradorDAO{
     
-    private IConexionBD conexion;
     private MongoDatabase baseDatos;
     
-    public AdministradorDAO(IConexionBD conexion) {
-        this.conexion = conexion;
-        this.baseDatos = this.conexion.crearConexion();
+    public AdministradorDAO(MongoDatabase conexion) {
+        this.baseDatos = conexion;
     }
     
     private MongoCollection<Administrador> getColeccion(){

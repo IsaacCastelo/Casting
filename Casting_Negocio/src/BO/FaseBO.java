@@ -15,8 +15,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class FaseBO implements IFaseBO{
-    IFaseDAO faseDAO = new FaseDAO(new ConexionBD()); 
-    
+    IFaseDAO faseDAO = new FaseDAO(ConexionBD.getInstance()); 
     @Override
     public void regsistrar(Fase fase){
         if(!(validarFecha(fase.getFechaInicio()))){

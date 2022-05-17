@@ -10,12 +10,11 @@ import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
 
-
-public interface ICastingDAO {
-    boolean agregar(Casting casting);
-    boolean eliminar(Casting casting);
-    List<Casting> consultarTodos();
+public interface ICastingBO {
+    void regsistrar(Casting casting);
+    void eliminar(Casting casting);
+    List<Casting> getCasting();
     List<Casting> getCastingNombre(String nombre);
     Casting getCastingID(ObjectId idCliente);
-    List<Casting> castingVigente(Date fecha);
+    boolean validarClienteVigente(Date fecha);
 }

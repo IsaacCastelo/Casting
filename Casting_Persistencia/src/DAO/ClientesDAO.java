@@ -5,6 +5,7 @@ package DAO;
 
 import Interfaces.IClienteDAO;
 import Interfaces.IConexionBD;
+import com.mongodb.client.ClientSession;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import entidades.Cliente;
@@ -17,12 +18,10 @@ import org.bson.types.ObjectId;
 
 public class ClientesDAO implements IClienteDAO {
 
-    private IConexionBD conexion;
     private MongoDatabase baseDatos;
     
-    public ClientesDAO(IConexionBD conexion) {
-        this.conexion = conexion;
-        this.baseDatos = this.conexion.crearConexion();
+    public ClientesDAO(MongoDatabase conexion) {
+        this.baseDatos = conexion;
     }
     
     private MongoCollection<Cliente> getColeccion(){
@@ -41,6 +40,7 @@ public class ClientesDAO implements IClienteDAO {
     public boolean eliminar(Cliente cliente) {
         // TODO: MANEJAR POSIBLES EXCEPCIONES...
 //        MongoCollection<Cliente> coleccion = this.getColeccion();
+//        coleccion.(cliente);
         return true;
     }
 

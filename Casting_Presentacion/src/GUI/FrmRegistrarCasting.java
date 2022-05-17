@@ -5,8 +5,11 @@
  */
 package GUI;
 
+import BO.ClienteBO;
 import BO.FaseBO;
+import Interfaces.IClienteBO;
 import Interfaces.IFaseBO;
+import entidades.Cliente;
 import entidades.Fase;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -23,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmRegistrarCasting extends javax.swing.JFrame {
     int numeroFase=0;
+    IClienteBO clienteBO = new ClienteBO();  
     IFaseBO faseBO = new FaseBO(); 
 
     /**
@@ -31,14 +35,13 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
     public FrmRegistrarCasting() {
         initComponents();
         llenarTablaFases();
+        llenarTablaCliente();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblListadoCastings = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -59,7 +62,11 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
         datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
         jLabel4 = new javax.swing.JLabel();
         btnRegistrarFase = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaClientes = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
         btnBorrarFase = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         datePicker2 = new com.github.lgooddatepicker.components.DatePicker();
         jLabel6 = new javax.swing.JLabel();
@@ -68,18 +75,6 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
         setTitle("Registro de Casting - Casting");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tblListadoCastings.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID Casting", "Nombre", "Fecha", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tblListadoCastings);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(436, 23, 572, 194));
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Floppy.png"))); // NOI18N
         btnAgregar.setText("Agregar");
@@ -90,7 +85,7 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
+        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, -1, -1));
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Delete.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
@@ -101,7 +96,7 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, -1, -1));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, -1, -1));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/salir_32_1.gif"))); // NOI18N
         btnSalir.setText("Salir");
@@ -112,7 +107,7 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 490, -1, -1));
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 520, -1, -1));
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
@@ -123,7 +118,7 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
                 btnLimpiarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, -1, -1));
+        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, -1, -1));
 
         lblNombre.setForeground(new java.awt.Color(204, 255, 255));
         lblNombre.setText("Nombre");
@@ -169,9 +164,9 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
         getContentPane().add(scrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(436, 278, 572, 196));
         getContentPane().add(datePicker1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 510, -1, -1));
 
-        jLabel4.setForeground(new java.awt.Color(204, 255, 255));
         jLabel4.setText("Fases");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(436, 250, -1, -1));
+        jLabel4.setForeground(new java.awt.Color(204, 255, 255));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, -1, -1));
 
         btnRegistrarFase.setText("Registrar Fase");
         btnRegistrarFase.addActionListener(new java.awt.event.ActionListener() {
@@ -181,8 +176,41 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
         });
         getContentPane().add(btnRegistrarFase, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 510, -1, -1));
 
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Dirección", "Teléfono", "Persona de Contacto", "Tipo de Publicidad"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaClientesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaClientes);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 570, 190));
+
+        jLabel7.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel7.setText("Fases");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, -1, -1));
+
         btnBorrarFase.setText("Borrar Fase");
         getContentPane().add(btnBorrarFase, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 510, -1, -1));
+
+        jLabel8.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel8.setText("Cliente");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, -1));
 
         jLabel5.setForeground(new java.awt.Color(204, 255, 255));
         jLabel5.setText("Fecha fase:");
@@ -234,6 +262,10 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
             llenarTablaFases();
         }
     }//GEN-LAST:event_btnRegistrarFaseActionPerformed
+
+    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaClientesMouseClicked
 
 /**
  *
@@ -289,6 +321,26 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
 
     }
     
+/**
+ *
+ * Metodo para llenar la tabla
+ */
+    public void llenarTablaCliente() {
+        List<Cliente> productos = clienteBO.getCliente();
+        DefaultTableModel modelo = (DefaultTableModel) tablaClientes.getModel();
+        modelo.setRowCount(0);
+        for (Cliente prov : productos) {
+            Object[] fila = new Object[6];
+            fila[0] = prov.getNombre();
+            fila[1] = prov.getDireccion().toString();
+            fila[2] = prov.getTelefono();
+            fila[3] = prov.getPersonaContacto().getNombre();
+            fila[4] = prov.getActividad();
+            modelo.addRow(fila);
+        }
+
+    }
+    
        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
@@ -306,13 +358,15 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblIDCasting;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JScrollPane scrollPane1;
+    private javax.swing.JTable tablaClientes;
     private javax.swing.JTable tblListaFases;
-    private javax.swing.JTable tblListadoCastings;
     private javax.swing.JTextField txtCoste;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtIDCasting;

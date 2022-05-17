@@ -19,12 +19,10 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 
 public class FaseDAO implements IFaseDAO{
-    private IConexionBD conexion;
     private MongoDatabase baseDatos;
     
-    public FaseDAO(IConexionBD conexion) {
-        this.conexion = conexion;
-        this.baseDatos = this.conexion.crearConexion();
+    public FaseDAO(MongoDatabase conexion) {
+        this.baseDatos = conexion;
     }
     
     private MongoCollection<Fase> getColeccion(){

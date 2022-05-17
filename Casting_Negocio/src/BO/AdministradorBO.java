@@ -19,7 +19,7 @@ import org.bson.Document;
 
 
 public class AdministradorBO implements IAdministradorBO{
-    IAdministradorDAO adminDAO = new AdministradorDAO(new ConexionBD());  
+    IAdministradorDAO adminDAO = new AdministradorDAO(ConexionBD.getInstance());  
     @Override
     public void regsistrar(Administrador administrador) {
         if(!(validarAdminExiste(administrador.getUsuario()))){

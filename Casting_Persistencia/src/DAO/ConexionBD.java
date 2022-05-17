@@ -10,17 +10,13 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
-/**
- *
- * @author Alexandra
- */
-public class ConexionBD implements IConexionBD {
+
+public class ConexionBD{
     private static final String HOST = "localhost";
     private static final int PUERTO = 27017;
     private static final String BASE_DATOS = "castingBD";
-    
-    @Override
-    public MongoDatabase crearConexion() {
+    private static MongoDatabase instance;
+    private ConexionBD() {
         try{
             //CONFIGURACIÓN PARA QUE MONGODRIVE REALICE EL MAPEO DE POJOS AUMATICAMENTE
             CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
@@ -36,12 +32,19 @@ public class ConexionBD implements IConexionBD {
             
             com.mongodb.client.MongoClient clienteMongo = MongoClients.create(clientsSettings);
             
-            MongoDatabase baseDatos = clienteMongo.getDatabase(BASE_DATOS);
-            
-            return baseDatos;           
+            instance = clienteMongo.getDatabase(BASE_DATOS);
+                      
         }catch(Exception ex){
             System.err.println(ex.getMessage());
-            return null;
+            
         }
     }
+    
+    public static MongoDatabase getInstance() {
+        if (instance == null) { 
+                new ConexionBD();
+        }
+        return instance;
+    }
 }
+

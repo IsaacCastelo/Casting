@@ -4,6 +4,7 @@ import DAO.ClientesDAO;
 import DAO.ConexionBD;
 import Interfaces.IClienteBO;
 import Interfaces.IClienteDAO;
+import Interfaces.IConexionBD;
 import entidades.Cliente;
 import entidades.Direccion;
 import entidades.Persona;
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Alexandra
  */
 public class ClienteBO implements IClienteBO{
-    IClienteDAO clientesDAO = new ClientesDAO(new ConexionBD());  
+    IClienteDAO clientesDAO = new ClientesDAO(ConexionBD.getInstance());  
     
     @Override
     public void regsistrar(Cliente cliente){
