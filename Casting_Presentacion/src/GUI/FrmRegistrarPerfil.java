@@ -40,10 +40,10 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtEstado = new javax.swing.JTextField();
         txtOjos = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtCabello = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
         cmbEdad = new javax.swing.JComboBox<>();
         cmbAltura = new javax.swing.JComboBox<>();
         cmbSexo = new javax.swing.JComboBox<>();
@@ -129,13 +129,15 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(204, 255, 255));
         jLabel5.setText("Color de cabello");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 258, -1, -1));
-        getContentPane().add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 28, 157, -1));
         getContentPane().add(txtOjos, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 307, 157, -1));
 
         jLabel6.setForeground(new java.awt.Color(204, 255, 255));
         jLabel6.setText("Color de ojos");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 315, -1, -1));
         getContentPane().add(txtCabello, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 254, 157, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 100, -1));
 
         cmbEdad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------", "0-15", "5 – 18", "18 - 25", "25 – 35", "35 – 45", "45 – 60", "mayor a 60" }));
         getContentPane().add(cmbEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 198, -1, -1));
@@ -178,7 +180,7 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
  * Metodo para limpiar todos los campos de texto
  */
     public void limpiarCampos(){
-        txtEstado.setText("");
+        cmbEdad.setSelectedIndex(0);
         txtCabello.setText("");
         txtOjos.setText("");
         cmbSexo.setSelectedIndex(0);
@@ -192,7 +194,7 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
  * Metodo para limpiar todos los campos de texto
  */
     public boolean validarCampos(){
-        if((txtEstado.getText().length() == 0)||(txtCabello.getText().length() == 0)||(txtOjos.getText().length() == 0)||
+        if((cmbSexo.getSelectedIndex() == 0)||(txtCabello.getText().length() == 0)||(txtOjos.getText().length() == 0)||
                 (cmbSexo.getSelectedIndex() == 0)||(cmbAltura.getSelectedIndex() == 0)||(cmbEdad.getSelectedIndex() == 0)){
             JOptionPane.showMessageDialog(null, "Campos sin llenar", "Animal", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -210,6 +212,7 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbAltura;
     private javax.swing.JComboBox<String> cmbEdad;
     private javax.swing.JComboBox<String> cmbSexo;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -220,7 +223,6 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtCabello;
-    private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtOjos;
     // End of variables declaration//GEN-END:variables
 }

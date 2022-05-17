@@ -11,6 +11,7 @@ import org.bson.types.ObjectId;
 
 public interface IPerfilDAO {
     boolean agregar(Perfil  perfil);
+    boolean eliminar(Perfil  perfil);
     List<Perfil> consultarTodos();
     Perfil consultar(ObjectId idPerfil);
     Perfil consultarNombre(String nombre);

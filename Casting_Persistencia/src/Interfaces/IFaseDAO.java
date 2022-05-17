@@ -12,7 +12,7 @@ import org.bson.types.ObjectId;
 
 public interface IFaseDAO {
     boolean agregar(Fase fase);
-    //boolean eliminar(Fase fase);
+    boolean eliminar(Fase fase);
     List<Fase> consultarTodos();
     Fase consultar(ObjectId idFase);
     Fase consultarFecha(Date fecha);

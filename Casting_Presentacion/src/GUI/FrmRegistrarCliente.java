@@ -251,28 +251,33 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el cliente seleccionado?", "Cliente", JOptionPane.YES_NO_OPTION); 
-        System.out.println(respuesta);
-        if(respuesta == 0){
-            Cliente cliente = new Cliente();
-           cliente.setNombre(txtNombre.getText());
-           Direccion direccion = new Direccion(txtCalle.getText(),txtNumero.getText(),txtColonia.getText());
-           cliente.setDireccion(direccion);
-           cliente.setTelefono(txtTelefono.getText());
-           Persona contacto = new Persona();
-           contacto.setNombre(txtContacto.getText());
-           cliente.setPersonaContacto(contacto);
-           String elemento=cmbTipoPublicidad.getSelectedItem().toString();
-           if(elemento.equals("Moda -Publicidad")){
-                String tipo= elemento.substring(0, elemento.indexOf(" -"));
-                cliente.setActividad(tipo);
-           }
-           else{
-               cliente.setActividad(elemento);
-           }
-            clienteBO.eliminar(cliente);
+        if(txtNombre.getText().length()>0){
+            int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el cliente seleccionado?", "Cliente", JOptionPane.YES_NO_OPTION); 
+            if(respuesta == 0){
+               Cliente cliente = new Cliente();
+               cliente.setNombre(txtNombre.getText());
+               Direccion direccion = new Direccion(txtCalle.getText(),txtNumero.getText(),txtColonia.getText());
+               cliente.setDireccion(direccion);
+               cliente.setTelefono(txtTelefono.getText());
+               Persona contacto = new Persona();
+               contacto.setNombre(txtContacto.getText());
+               cliente.setPersonaContacto(contacto);
+               String elemento=cmbTipoPublicidad.getSelectedItem().toString();
+               if(elemento.equals("Moda -Publicidad")){
+                    String tipo= elemento.substring(0, elemento.indexOf(" -"));
+                    cliente.setActividad(tipo);
+               }
+               else{
+                   cliente.setActividad(elemento);
+               }
+                clienteBO.eliminar(cliente);
+            }
+            llenarTabla();
+            limpiarCampos();
         }
-        llenarTabla();
+        else{
+            JOptionPane.showMessageDialog(null, "Seleccione un cliente", "Cliente", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed

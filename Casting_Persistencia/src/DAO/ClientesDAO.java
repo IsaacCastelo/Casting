@@ -8,6 +8,7 @@ import Interfaces.IConexionBD;
 import com.mongodb.client.ClientSession;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
 import entidades.Cliente;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -39,8 +40,8 @@ public class ClientesDAO implements IClienteDAO {
     @Override
     public boolean eliminar(Cliente cliente) {
         // TODO: MANEJAR POSIBLES EXCEPCIONES...
-//        MongoCollection<Cliente> coleccion = this.getColeccion();
-//        coleccion.(cliente);
+        MongoCollection<Cliente> coleccion = this.getColeccion();
+        coleccion.deleteOne(eq("nombre",cliente.getNombre()));
         return true;
     }
 

@@ -9,6 +9,7 @@ import Interfaces.IConexionBD;
 import Interfaces.IFaseDAO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
 import entidades.Fase;
 import entidades.Perfil;
 import java.util.ArrayList;
@@ -34,6 +35,14 @@ public class FaseDAO implements IFaseDAO{
         // TODO: MANEJAR POSIBLES EXCEPCIONES...
         MongoCollection<Fase> coleccion = this.getColeccion();
         coleccion.insertOne(fase);
+        return true;
+    }
+    
+     @Override
+    public boolean eliminar(Fase fase) {
+        // TODO: MANEJAR POSIBLES EXCEPCIONES...
+        MongoCollection<Fase> coleccion = this.getColeccion();
+        coleccion.deleteOne(eq("numero",fase.getNumero()));
         return true;
     }
     

@@ -9,13 +9,8 @@ import DAO.AdministradorDAO;
 import DAO.ConexionBD;
 import Interfaces.IAdministradorBO;
 import Interfaces.IAdministradorDAO;
-import com.mongodb.client.MongoCollection;
 import entidades.Administrador;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import javax.swing.JOptionPane;
-import org.bson.Document;
 
 
 public class AdministradorBO implements IAdministradorBO{
@@ -24,6 +19,7 @@ public class AdministradorBO implements IAdministradorBO{
     public void regsistrar(Administrador administrador) {
         if(!(validarAdminExiste(administrador.getUsuario()))){
             adminDAO.agregar(administrador);
+            JOptionPane.showMessageDialog(null, "Usuario registrado", "Administrador", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             JOptionPane.showMessageDialog(null, "Usuario ya existe", "Administrador", JOptionPane.ERROR_MESSAGE); 
@@ -43,6 +39,7 @@ public class AdministradorBO implements IAdministradorBO{
                 return false;
             }
         }
+        JOptionPane.showMessageDialog(null, "Usuario no existe", "Administrador", JOptionPane.ERROR_MESSAGE); 
         return false;
     }
     

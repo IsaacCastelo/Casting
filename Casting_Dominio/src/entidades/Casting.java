@@ -11,11 +11,10 @@ import org.bson.types.ObjectId;
 public class Casting {
     private ObjectId id;
     private String nombre;
-    private Direccion direccion;
     private Date fechaContratacion;
     private ObjectId idCliente;
     private float costo;
-    private Agente agente;
+//    private Agente agente;
     private List<ObjectId> idsPerfiles;
     private List<Perfil> perfiles;
 
@@ -25,22 +24,20 @@ public class Casting {
     public Casting(ObjectId id, String nombre, Direccion direccion, Date fechaContratacion, ObjectId idCliente, float costo, Agente agente, List<ObjectId> idsPerfiles, List<Perfil> perfiles) {
         this.id = id;
         this.nombre = nombre;
-        this.direccion = direccion;
         this.fechaContratacion = fechaContratacion;
         this.idCliente = idCliente;
         this.costo = costo;
-        this.agente = agente;
+//        this.agente = agente;
         this.idsPerfiles = idsPerfiles;
         this.perfiles = perfiles;
     }
 
     public Casting(String nombre, Direccion direccion, Date fechaContratacion, ObjectId idCliente, float costo, Agente agente, List<ObjectId> idsPerfiles, List<Perfil> perfiles) {
         this.nombre = nombre;
-        this.direccion = direccion;
         this.fechaContratacion = fechaContratacion;
         this.idCliente = idCliente;
         this.costo = costo;
-        this.agente = agente;
+//        this.agente = agente;
         this.idsPerfiles = idsPerfiles;
         this.perfiles = perfiles;
     }
@@ -59,14 +56,6 @@ public class Casting {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public Direccion getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(Direccion direccion) {
-        this.direccion = direccion;
     }
 
     public Date getFechaContratacion() {
@@ -93,13 +82,13 @@ public class Casting {
         this.costo = costo;
     }
 
-    public Agente getAgente() {
-        return agente;
-    }
-
-    public void setAgente(Agente agente) {
-        this.agente = agente;
-    }
+//    public Agente getAgente() {
+//        return agente;
+//    }
+//
+//    public void setAgente(Agente agente) {
+//        this.agente = agente;
+//    }
 
     public List<ObjectId> getIdsPerfiles() {
         return idsPerfiles;
@@ -122,11 +111,10 @@ public class Casting {
         int hash = 3;
         hash = 83 * hash + Objects.hashCode(this.id);
         hash = 83 * hash + Objects.hashCode(this.nombre);
-        hash = 83 * hash + Objects.hashCode(this.direccion);
         hash = 83 * hash + Objects.hashCode(this.fechaContratacion);
         hash = 83 * hash + Objects.hashCode(this.idCliente);
         hash = 83 * hash + Float.floatToIntBits(this.costo);
-        hash = 83 * hash + Objects.hashCode(this.agente);
+//        hash = 83 * hash + Objects.hashCode(this.agente);
         hash = 83 * hash + Objects.hashCode(this.idsPerfiles);
         hash = 83 * hash + Objects.hashCode(this.perfiles);
         return hash;
@@ -153,18 +141,16 @@ public class Casting {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.direccion, other.direccion)) {
-            return false;
-        }
+
         if (!Objects.equals(this.fechaContratacion, other.fechaContratacion)) {
             return false;
         }
         if (!Objects.equals(this.idCliente, other.idCliente)) {
             return false;
         }
-        if (!Objects.equals(this.agente, other.agente)) {
-            return false;
-        }
+//        if (!Objects.equals(this.agente, other.agente)) {
+//            return false;
+//        }
         if (!Objects.equals(this.idsPerfiles, other.idsPerfiles)) {
             return false;
         }
@@ -176,7 +162,7 @@ public class Casting {
 
     @Override
     public String toString() {
-        return "Casting{" + "id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", fechaContratacion=" + fechaContratacion + ", idCliente=" + idCliente + ", costo=" + costo + ", agente=" + agente + ", idsPerfiles=" + idsPerfiles + ", perfiles=" + perfiles + '}';
+        return "Casting{" + "id=" + id + ", nombre=" + nombre + ", fechaContratacion=" + fechaContratacion + ", idCliente=" + idCliente + ", costo=" + costo + " idsPerfiles=" + idsPerfiles + ", perfiles=" + perfiles + '}';
     }
     
 }

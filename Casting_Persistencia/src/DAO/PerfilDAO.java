@@ -9,6 +9,7 @@ import Interfaces.IConexionBD;
 import Interfaces.IPerfilDAO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
 import entidades.Perfil;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -33,6 +34,14 @@ public class PerfilDAO implements IPerfilDAO{
         // TODO: MANEJAR POSIBLES EXCEPCIONES...
         MongoCollection<Perfil> coleccion = this.getColeccion();
         coleccion.insertOne(perfil);
+        return true;
+    }
+    
+    @Override
+    public boolean eliminar(Perfil perfil) {
+        // TODO: MANEJAR POSIBLES EXCEPCIONES...
+        MongoCollection<Perfil> coleccion = this.getColeccion();
+        coleccion.deleteOne(eq("nombre",perfil.getId()));
         return true;
     }
     
