@@ -27,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
 public class FrmRegistrarPerfil extends javax.swing.JFrame {
     ICastingBO castingBO = new CastingBO();
     IPerfilBO perfilBO = new PefilBO();
+    Casting casting = new Casting();
 
     /**
      * Creates new form FrmRegistrarPerfil
@@ -85,6 +86,11 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
                 "ID", "Nombre", "Agente", "Cliente", "Costo", "Decripción"
             }
         ));
+        tblCasting.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCastingMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCasting);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 565, 160));
@@ -209,7 +215,7 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Estado", "Sexo", "altura", "edad", "Experiencia", "Especialidad", "Cabello", "Ojos"
+                "ID", "Estado", "Sexo", "altura", "edad", "Experiencia", "Especialidad", "Cabello", "Ojos", "ID Casting"
             }
         ));
         tblPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -219,7 +225,7 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tblPerfil);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 610, 170));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 640, 170));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Fondo.png"))); // NOI18N
         jLabel7.setText("jLabel7");
@@ -250,9 +256,16 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
             else{
                 perfil.setExperiencia(false);
             }
-            perfilBO.regsistrar(perfil);
-            llenarTabla();
-            limpiarCampos();
+            if(validarCampoCasting()){
+                perfil.setCasting(casting);
+                perfilBO.regsistrar(perfil);
+                llenarTabla();
+                limpiarCampos();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Seleccione un casting", "Perfil", JOptionPane.ERROR_MESSAGE);
+            }
+            
         }
         else{
             JOptionPane.showMessageDialog(null, "Campos sin llenar", "Perfil", JOptionPane.ERROR_MESSAGE);
@@ -329,6 +342,21 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtIDKeyTyped
+
+    private void tblCastingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCastingMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) tblCasting.getModel();
+        String id = model.getValueAt(tblCasting.getSelectedRow(), 0).toString();
+        String nombre = model.getValueAt(tblCasting.getSelectedRow(), 1).toString();
+        String cliente = model.getValueAt(tblCasting.getSelectedRow(), 3).toString();
+        String costo = model.getValueAt(tblCasting.getSelectedRow(), 4).toString();
+        String descripcion = model.getValueAt(tblCasting.getSelectedRow(), 5).toString();
+        casting.setNumCasting(Long.parseLong(id));
+        casting.setCosto(Float.parseFloat(costo));
+        casting.setNombre(nombre);
+        casting.setDescripcion(descripcion);
+        System.out.println(casting);
+    }//GEN-LAST:event_tblCastingMouseClicked
     
 /**
  *
@@ -392,7 +420,7 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tblPerfil.getModel();
         modelo.setRowCount(0);
         for (Perfil prov : productos) {
-            Object[] fila = new Object[9];
+            Object[] fila = new Object[10];
             fila[0] = prov.getNumPerfil();
             fila[1] = prov.getEstado();
             fila[2] = prov.getSexo();
@@ -407,11 +435,20 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
             }
             fila[7] = prov.getColorPelo();
             fila[8] = prov.getColorOjos();
+            fila[9] = prov.getCasting().getNumCasting();
             modelo.addRow(fila);
         }
 
     }
     
+    public boolean validarCampoCasting(){
+        if (casting.getNombre() == null) {
+            
+            return false;
+        }
+        else 
+            return true;
+    }
 /**
  *
  * Metodo para llenar la tabla de castings
