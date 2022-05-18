@@ -299,33 +299,39 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
             fecha.setHours(0);
             fecha.setMinutes(0);
             fecha.setSeconds(0);
-            casting.setFechaContratacion(fecha);
-            casting.setTipo(cmbTipo.getSelectedItem().toString());
-            casting.setDescripcion(txtDescripcion.getText());
-            
-            casting.setCosto(Float.parseFloat(txtCoste.getText()));
-            casting.setNombre(txtNombre.getText());
-            if(validarCampoCliente()){
-                casting.setCliente(cliente);
-                if(validarCampoAgente()){
-                    casting.setAgente(agente);
-                    if(validarFases()){
-                        for(int i=0;fases.size()>i; i++){
-                            fases.get(i).setCasting(casting);
-                            faseBO.regsistrar(fases.get(i));
+            Date fechaHoy = new Date();
+            if(fechaHoy.after(fecha)){
+                JOptionPane.showMessageDialog(this, "Fecha invalida", "Fase", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+                casting.setFechaContratacion(fecha);
+                casting.setTipo(cmbTipo.getSelectedItem().toString());
+                casting.setDescripcion(txtDescripcion.getText());
+
+                casting.setCosto(Float.parseFloat(txtCoste.getText()));
+                casting.setNombre(txtNombre.getText());
+                if(validarCampoCliente()){
+                    casting.setCliente(cliente);
+                    if(validarCampoAgente()){
+                        casting.setAgente(agente);
+                        if(validarFases()){
+                            for(int i=0;fases.size()>i; i++){
+                                fases.get(i).setCasting(casting);
+                                faseBO.regsistrar(fases.get(i));
+                            }
+                            castingBO.regsistrar(casting);
                         }
-                        castingBO.regsistrar(casting);
+                        else{
+                            JOptionPane.showMessageDialog(this, "Debes agregar minimo 2 fases", "Fase", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
                     else{
-                        JOptionPane.showMessageDialog(this, "Debes agregar minimo 2 fases", "Fase", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Seleccione un agente", "Agente", JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 else{
-                    JOptionPane.showMessageDialog(this, "Seleccione un agente", "Agente", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Seleccione un cliente", "Cliente", JOptionPane.ERROR_MESSAGE);
                 }
-            }
-            else{
-                JOptionPane.showMessageDialog(this, "Seleccione un cliente", "Cliente", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -341,7 +347,7 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
 
     private void btnRegistrarFaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarFaseActionPerformed
         if (validarCampoFase()) {
-            numeroFase=numeroFase+1;
+            
             Date fecha = new Date();
             String año = datePicker1.getDateStringOrEmptyString().substring(0,datePicker1.getDateStringOrEmptyString().indexOf("-"));
             String mes = datePicker1.getDateStringOrEmptyString().substring(5,datePicker1.getDateStringOrEmptyString().lastIndexOf("-"));
@@ -352,10 +358,17 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
             fecha.setHours(0);
             fecha.setMinutes(0);
             fecha.setSeconds(0);
-            Fase fase = new Fase(numeroFase, fecha);
+            Date fechaHoy = new Date();
+            if(fechaHoy.after(fecha)){
+                JOptionPane.showMessageDialog(this, "Fecha invalida", "Fase", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+                Fase fase = new Fase(numeroFase, fecha);
+                numeroFase=numeroFase+1;
+                fases.add(fase);
+                llenarTablaFases();
+            }
             
-            fases.add(fase);
-            llenarTablaFases();
         }
     }//GEN-LAST:event_btnRegistrarFaseActionPerformed
 

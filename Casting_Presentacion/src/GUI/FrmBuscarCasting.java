@@ -130,13 +130,18 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
                 List<Casting> productos = castingBO.getCastingID(Long.parseLong(txtCampo.getText()));
                 DefaultTableModel modelo = (DefaultTableModel) tblCastings.getModel();
                 modelo.setRowCount(0);
-                for (Casting prov : productos) {
-                    Object[] fila = new Object[9];
-                    fila[0] = prov.getNumCasting();
-                    fila[1] = prov.getNombre();
-                    String fechaI = prov.getFechaContratacion().getDate()+"/";
-                    if(prov.getFechaContratacion().getMonth()<10){
-                        fechaI = fechaI+"0"+ prov.getFechaContratacion().getMonth()+"/";
+                if(productos!=null){
+                    for (Casting prov : productos) {
+                        Object[] fila = new Object[9];
+                        fila[0] = prov.getNumCasting();
+                        fila[1] = prov.getNombre();
+                        String fechaI = prov.getFechaContratacion().getDate()+"/";
+                        if(prov.getFechaContratacion().getMonth()<10){
+                            fechaI = fechaI+"0"+ prov.getFechaContratacion().getMonth()+"/";
+                        }
+                        else{
+                            fechaI = fechaI+ prov.getFechaContratacion().getMonth()+"/";
+                        }
                         fechaI = fechaI + (prov.getFechaContratacion().getYear()+1900)+ "";
                         fila[2] = fechaI;
                         fila[3] = prov.getCosto();
@@ -152,13 +157,18 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
                 List<Casting> productos = castingBO.getCastingNombre(txtCampo.getText());
                 DefaultTableModel modelo = (DefaultTableModel) tblCastings.getModel();
                 modelo.setRowCount(0);
-                for (Casting prov : productos) {
-                    Object[] fila = new Object[9];
-                    fila[0] = prov.getNumCasting();
-                    fila[1] = prov.getNombre();
-                    String fechaI = prov.getFechaContratacion().getDate()+"/";
-                    if(prov.getFechaContratacion().getMonth()<10){
-                        fechaI = fechaI+"0"+ prov.getFechaContratacion().getMonth()+"/";
+                if(productos!=null){
+                    for (Casting prov : productos) {
+                        Object[] fila = new Object[9];
+                        fila[0] = prov.getNumCasting();
+                        fila[1] = prov.getNombre();
+                        String fechaI = prov.getFechaContratacion().getDate()+"/";
+                        if(prov.getFechaContratacion().getMonth()<10){
+                            fechaI = fechaI+"0"+ prov.getFechaContratacion().getMonth()+"/";
+                        }
+                        else{
+                            fechaI = fechaI+ prov.getFechaContratacion().getMonth()+"/";
+                        }
                         fechaI = fechaI + (prov.getFechaContratacion().getYear()+1900)+ "";
                         fila[2] = fechaI;
                         fila[3] = prov.getCosto();
@@ -174,13 +184,18 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
                 List<Casting> productos = castingBO.getCasting();
                 DefaultTableModel modelo = (DefaultTableModel) tblCastings.getModel();
                 modelo.setRowCount(0);
-                for (Casting prov : productos) {
-                    Object[] fila = new Object[9];
-                    fila[0] = prov.getNumCasting();
-                    fila[1] = prov.getNombre();
-                    String fechaI = prov.getFechaContratacion().getDate()+"/";
-                    if(prov.getFechaContratacion().getMonth()<10){
-                        fechaI = fechaI+"0"+ prov.getFechaContratacion().getMonth()+"/";
+                if(productos!=null){
+                    for (Casting prov : productos) {
+                        Object[] fila = new Object[9];
+                        fila[0] = prov.getNumCasting();
+                        fila[1] = prov.getNombre();
+                        String fechaI = prov.getFechaContratacion().getDate()+"/";
+                        if(prov.getFechaContratacion().getMonth()<10){
+                            fechaI = fechaI+"0"+ prov.getFechaContratacion().getMonth()+"/";
+                        }
+                        else{
+                            fechaI = fechaI+ prov.getFechaContratacion().getMonth()+"/";
+                        }
                         fechaI = fechaI + (prov.getFechaContratacion().getYear()+1900)+ "";
                         fila[2] = fechaI;
                         fila[3] = prov.getCosto();
@@ -189,13 +204,17 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
                         fila[6] = prov.getCliente().getNombre();
                         fila[7] = prov.getAgente().getNombre();
                         if(fechaI.equals(txtCampo.getText())){
-                        modelo.addRow(fila);
+                            modelo.addRow(fila);
                         }
+                        
                     }
-                    
+                    if(modelo.getRowCount()==0){
+                            JOptionPane.showMessageDialog(null, "No hay coincidencias", "Casting", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         }
+        limpiarCampos();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed

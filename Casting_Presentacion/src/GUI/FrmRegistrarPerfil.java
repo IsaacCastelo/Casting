@@ -13,6 +13,7 @@ import entidades.Casting;
 import entidades.Perfil;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -422,12 +423,28 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
             modelo.setRowCount(0);
             for (Casting prov : productos) {
                 Object[] fila = new Object[6];
-                fila[0] = prov.getNombre();
-                fila[1] = prov.getAgente().getNombre();
-                fila[2] = prov.getCliente().getNombre();
-                fila[3] = prov.getCosto();
-                fila[4] = prov.getDescripcion();
-                modelo.addRow(fila);
+                fila[0] = prov.getNumCasting();
+                fila[1] = prov.getNombre();
+                fila[2] = prov.getAgente().getNombre();
+                fila[3] = prov.getCliente().getNombre();
+                fila[4] = prov.getCosto();
+                fila[5] = prov.getDescripcion();
+                String fechaI = prov.getFechaContratacion().getDate()+"/";
+                if(prov.getFechaContratacion().getMonth()<10){
+                    fechaI = fechaI+"0"+ prov.getFechaContratacion().getMonth()+"/";
+                }
+                else{
+                    fechaI = fechaI+ prov.getFechaContratacion().getMonth()+"/";
+                }
+                fechaI = fechaI + (prov.getFechaContratacion().getYear()+1900)+ "";
+                Date fechaHoy = new Date();
+                if(fechaHoy.after(prov.getFechaContratacion())){
+
+                }
+                else{
+                    modelo.addRow(fila);
+                }
+                
             }
         }
         else{
