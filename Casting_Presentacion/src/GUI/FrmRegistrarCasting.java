@@ -322,7 +322,6 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
                 if(validarCampoAgente()){
                     casting.setAgente(agente);
                     if(validarFases()){
-                        casting.setFase(fases);
                         for(int i=0;fases.size()>i; i++){
                             faseBO.regsistrar(fases.get(i));
                         }
@@ -389,6 +388,7 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
         agente.setTelefono(telefono);
         agente.setCurp(curp);
         agente.setRFC(rfc);
+        System.out.println(agente);
     }//GEN-LAST:event_tablaAgenteMouseClicked
 
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
@@ -414,6 +414,7 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
         direccion2.setNumero(numero.substring(2));
         cliente.setDireccion(direccion2);
         cliente.setActividad(tipo);
+        System.out.println(cliente);
     }//GEN-LAST:event_tablaClientesMouseClicked
 
     private void txtCosteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCosteKeyTyped
@@ -485,6 +486,7 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
         cmbTipo.setSelectedIndex(0);
         cliente=null;
         agente=null;
+        inauguracion.setText("");
         
     }
 
@@ -512,7 +514,7 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
     }
     
     public boolean validarCampoCliente(){
-        if (cliente == null) {
+        if (cliente.getNombre() == null) {
             
             return false;
         }
@@ -522,7 +524,7 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
     
     public boolean validarCampoAgente(){
        
-        if (agente == null) {
+        if (agente.getNombre() == null) {
             return false;
         }
         else 

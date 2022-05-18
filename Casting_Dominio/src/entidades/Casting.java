@@ -23,7 +23,7 @@ public class Casting {
     public Casting() {
     }
 
-    public Casting(long numCasting, Cliente cliente, String nombre, Date fechaContratacion, float costo, Agente agente, String descripcion, Fase fases, String tipo) {
+    public Casting(long numCasting, Cliente cliente, String nombre, Date fechaContratacion, float costo, Agente agente, String descripcion, String tipo) {
         this.numCasting = numCasting;
         this.nombre = nombre;
         this.fechaContratacion = fechaContratacion;
@@ -141,7 +141,6 @@ public class Casting {
         hash = 83 * hash + Float.floatToIntBits(this.costo);
         hash = 83 * hash + Objects.hashCode(this.agente);
         hash = 83 * hash + Objects.hashCode(this.idsPerfiles);
-//        hash = 83 * hash + Objects.hashCode(this.fases);
         return hash;
     }
 
@@ -195,7 +194,7 @@ public class Casting {
 
     @Override
     public String toString() {
-        return  "Casting{numCasting="+ numCasting +", nombre=" + nombre + ", fechaContratacion=" + fechaContratacion + ", tipo="+ tipo+", costo=" + costo + ", descripcion=" + descripcion + ", cliente=" + cliente +", agente="+ agente + '}';
+        return  "Casting{numCasting="+ numCasting +", nombre=" + nombre + ", fechaContratacion=" + fechaContratacion + ", tipo="+ tipo+", costo=" + costo + ", descripcion=" + descripcion + ", cliente=" + cliente +", agente="+ agente +'}';
     }
 
     
