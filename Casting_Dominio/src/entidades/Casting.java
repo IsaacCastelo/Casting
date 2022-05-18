@@ -19,12 +19,11 @@ public class Casting {
     private Agente agente;
     private String tipo;
     private List<ObjectId> idsPerfiles;
-    private List<Fase> fases;
 
     public Casting() {
     }
 
-    public Casting(long numCasting, Cliente cliente, String nombre, Date fechaContratacion, float costo, Agente agente, String descripcion, List<Fase> fases, String tipo) {
+    public Casting(long numCasting, Cliente cliente, String nombre, Date fechaContratacion, float costo, Agente agente, String descripcion, Fase fases, String tipo) {
         this.numCasting = numCasting;
         this.nombre = nombre;
         this.fechaContratacion = fechaContratacion;
@@ -32,7 +31,6 @@ public class Casting {
         this.costo = costo;
         this.descripcion = descripcion;
         this.agente = agente;
-        this.fases = fases;
         this.tipo=tipo;
     }
 
@@ -108,14 +106,14 @@ public class Casting {
     public void setIdsPerfiles(List<ObjectId> idsPerfiles) {
         this.idsPerfiles = idsPerfiles;
     }
-
-    public List<Fase> getFases() {
-        return fases;
-    }
-
-    public void setFase(List<Fase> fases) {
-        this.fases = fases;
-    }
+//
+//    public Fase getFases() {
+//        return fases;
+//    }
+//
+//    public void setFase(Fase fases) {
+//        this.fases = fases;
+//    }
     
     public String getDescripcion() {
         return descripcion;
@@ -141,9 +139,9 @@ public class Casting {
         hash = 83 * hash + Objects.hashCode(this.fechaContratacion);
         hash = 83 * hash + Objects.hashCode(this.cliente);
         hash = 83 * hash + Float.floatToIntBits(this.costo);
-//        hash = 83 * hash + Objects.hashCode(this.agente);
+        hash = 83 * hash + Objects.hashCode(this.agente);
         hash = 83 * hash + Objects.hashCode(this.idsPerfiles);
-        hash = 83 * hash + Objects.hashCode(this.fases);
+//        hash = 83 * hash + Objects.hashCode(this.fases);
         return hash;
     }
 
@@ -175,21 +173,29 @@ public class Casting {
         if (!Objects.equals(this.cliente, other.cliente)) {
             return false;
         }
-//        if (!Objects.equals(this.agente, other.agente)) {
-//            return false;
-//        }
+        if (!Objects.equals(this.agente, other.agente)) {
+            return false;
+        }
         if (!Objects.equals(this.idsPerfiles, other.idsPerfiles)) {
             return false;
         }
-        if (!Objects.equals(this.fases, other.fases)) {
-            return false;
-        }
+//        if (!Objects.equals(this.fases, other.fases)) {
+//            return false;
+//        }
         return true;
     }
+    
+//    public String toStringFases(){
+//        String fasesS="[";
+//        for(int i=0;fases.size()>i; i++){
+//           fasesS = fasesS + "{numFase: "+fases.get(i).getNumero() + ", fecha: "+fases.get(1).getFechaInicio()+'}';
+//        }
+//        return fasesS+']';
+//    }
 
     @Override
     public String toString() {
-        return  "id: "+ numCasting +"nombre: " + nombre + ", fechaContratacion: " + fechaContratacion + ", tipo: "+ tipo+", costo: " + costo + ", Descripcion: " + descripcion + ", Cliente: " + cliente.getNombre() +", Agente: "+ agente.getNombre();
+        return  "Casting{numCasting="+ numCasting +", nombre=" + nombre + ", fechaContratacion=" + fechaContratacion + ", tipo="+ tipo+", costo=" + costo + ", descripcion=" + descripcion + ", cliente=" + cliente +", agente="+ agente + '}';
     }
 
     

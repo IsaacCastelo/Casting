@@ -83,7 +83,7 @@ public class Fase {
 
     @Override
     public String toString() {
-        return numero + ", " + fechaInicio;
+        return "Fase{numFase="+numero + ", fecha=" + fechaInicio+'}';
     }
 
 }

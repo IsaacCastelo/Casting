@@ -19,6 +19,8 @@ import entidades.Direccion;
 import entidades.Fase;
 import entidades.Persona;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
@@ -35,15 +37,18 @@ public class Prueba {
         IClienteDAO clienteDAO = new ClientesDAO(ConexionBD.getInstance());      
 ////        clienteDAO.agregar(new Cliente("Miguel Hidalgo", new Direccion("Antonio Caso", "23B", "Villa Itson"), "6441177349", "moda" , new Persona("Don Pancho", "6419827643", new Direccion("Los arboles", "489y", "Mantecada"), "PELS021028HSRYPLA5")));
 //        clienteDAO.eliminar(new Cliente("Miguel Hidalgo", new Direccion("Antonio Caso", "23B", "Villa Itson"), "6441177349", "moda" , new Persona("Don Pancho", "6419827643", new Direccion("Los arboles", "489y", "Mantecada"), "PELS021028HSRYPLA5")));
-        clienteDAO.consultarTodos().forEach((cliente) -> { System.out.println(cliente.getId());});
+        clienteDAO.consultarTodos().forEach((cliente) -> { System.out.println(cliente);});
 //        System.out.println(clienteDAO.consultarNombre("Pedro"));
 //        Fase
-//        IFaseDAO faseDAO = new FaseDAO(new ConexionBD());  
-//        Date fecha = new Date();
-//        fecha.setMonth(2);
-//        fecha.setYear(119);
-////        faseDAO.agregar(new Fase(3,fecha));
-//        faseDAO.consultarTodos().forEach((fase) -> { System.out.println(fase);});
+        IFaseDAO faseDAO = new FaseDAO(ConexionBD.getInstance());  
+        Date fecha2 = new Date();
+        fecha2.setMonth(2);
+        fecha2.setYear(119);
+        Fase fases = new Fase();
+        fases.setFechaInicio(fecha2);
+        fases.setNumero(1);
+//        faseDAO.agregar(fases);
+        faseDAO.consultarTodos().forEach((fase) -> { System.out.println(fase);});
         
         
         ICastingDAO castingDAO = new CastingDAO(ConexionBD.getInstance());
@@ -57,6 +62,8 @@ public class Prueba {
         Agente agente = new Agente();
         agente.setNombre("Pedro");
         casting.setAgente(agente);
+        List<Fase> fases2 = new LinkedList<>();
+//        casting.setFase(fases);
         castingDAO.agregar(casting);
         castingDAO.consultarTodos().forEach((cliente) -> { System.out.println(cliente);});
     }

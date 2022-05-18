@@ -32,6 +32,7 @@ public class CastingDAO implements ICastingDAO{
     public boolean agregar(Casting casting) {
         // TODO: MANEJAR POSIBLES EXCEPCIONES...
         MongoCollection<Casting> coleccion = this.getColeccion();
+//        System.out.println(casting.getFases());
         coleccion.insertOne(casting);
         return true;
     }
