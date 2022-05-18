@@ -42,7 +42,7 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
     IClienteBO clienteBO = new ClienteBO();
     IFaseBO faseBO = new FaseBO();  
     List<Fase> fases = new LinkedList<>();
-    Casting casting = new Casting();
+    
 
     /**
      * Creates new form FrmRegistrarCasting
@@ -287,7 +287,7 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (validarCamposDatos()) {
-            
+            Casting casting = new Casting();
             casting.setNumCasting(Long.parseLong(txtIDCasting.getText()));
             Date fecha = new Date();
             String año = inauguracion.getDateStringOrEmptyString().substring(0,inauguracion.getDateStringOrEmptyString().indexOf("-"));
@@ -348,30 +348,41 @@ public class FrmRegistrarCasting extends javax.swing.JFrame {
 
     private void btnRegistrarFaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarFaseActionPerformed
         if (validarCampoFase()) {
-            if(casting.getFechaContratacion()!=null){
-                Date fecha = new Date();
-                String año = datePicker1.getDateStringOrEmptyString().substring(0,datePicker1.getDateStringOrEmptyString().indexOf("-"));
-                String mes = datePicker1.getDateStringOrEmptyString().substring(5,datePicker1.getDateStringOrEmptyString().lastIndexOf("-"));
-                String dia = datePicker1.getDateStringOrEmptyString().substring(8);
-                fecha.setYear(Integer.parseInt(año)-1900);
-                fecha.setMonth(Integer.parseInt(mes)-1);
-                fecha.setDate(Integer.parseInt(dia));
-                fecha.setHours(0);
-                fecha.setMinutes(0);
-                fecha.setSeconds(0);
+            if(inauguracion.getDateStringOrEmptyString().toString()!=""){
+                Date fechaIn = new Date();
+                String añoI = inauguracion.getDateStringOrEmptyString().substring(0,inauguracion.getDateStringOrEmptyString().indexOf("-"));
+                String mesI = inauguracion.getDateStringOrEmptyString().substring(5,inauguracion.getDateStringOrEmptyString().lastIndexOf("-"));
+                String diaI = inauguracion.getDateStringOrEmptyString().substring(8);
+                fechaIn.setYear(Integer.parseInt(añoI)-1900);
+                fechaIn.setMonth(Integer.parseInt(mesI)-1);
+                fechaIn.setDate(Integer.parseInt(diaI));
                 Date fechaHoy = new Date();
-                if(fechaHoy.after(fecha)){
-                    JOptionPane.showMessageDialog(this, "Fecha invalida", "Fase", JOptionPane.ERROR_MESSAGE);
-                }
-                else{
-                    if(!(casting.getFechaContratacion().after(fecha))){
-                        numeroFase=numeroFase+1;
-                        Fase fase = new Fase(numeroFase, fecha);
-                        fases.add(fase);
-                        llenarTablaFases();
+                if(fechaHoy.after(fechaIn)){
+                    JOptionPane.showMessageDialog(this, "Fecha invalida para inicio de Casting", "Fase", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    Date fecha = new Date();
+                    String año = datePicker1.getDateStringOrEmptyString().substring(0,datePicker1.getDateStringOrEmptyString().indexOf("-"));
+                    String mes = datePicker1.getDateStringOrEmptyString().substring(5,datePicker1.getDateStringOrEmptyString().lastIndexOf("-"));
+                    String dia = datePicker1.getDateStringOrEmptyString().substring(8);
+                    fecha.setYear(Integer.parseInt(año)-1900);
+                    fecha.setMonth(Integer.parseInt(mes)-1);
+                    fecha.setDate(Integer.parseInt(dia));
+                    fecha.setHours(0);
+                    fecha.setMinutes(0);
+                    fecha.setSeconds(0);
+                    if(fechaHoy.after(fecha)){
+                        JOptionPane.showMessageDialog(this, "Fecha invalida", "Fase", JOptionPane.ERROR_MESSAGE);
                     }
                     else{
-                        JOptionPane.showMessageDialog(this, "Fecha invalida, fases después de fecha inicial de casting", "Fase", JOptionPane.ERROR_MESSAGE);
+                        if(!(fechaIn.after(fecha))){
+                            numeroFase=numeroFase+1;
+                            Fase fase = new Fase(numeroFase, fecha);
+                            fases.add(fase);
+                            llenarTablaFases();
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(this, "Fecha invalida, fases después de fecha inicial de casting", "Fase", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
                 }
             }
