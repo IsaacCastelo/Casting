@@ -15,6 +15,6 @@ public interface ICastingBO {
     void eliminar(Casting casting);
     List<Casting> getCasting();
     List<Casting> getCastingNombre(String nombre);
-    Casting getCastingID(long idCliente);
+    List<Casting> getCastingID(long idCliente);
     boolean validarCastingExiste(String nombre);
 }

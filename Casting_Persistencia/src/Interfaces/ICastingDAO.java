@@ -15,6 +15,6 @@ public interface ICastingDAO {
     boolean eliminar(Casting casting);
     List<Casting> consultarTodos();
     List<Casting> getCastingNombre(String nombre);
-    Casting getCastingID(long idCliente);
+    List<Casting>  getCastingID(long idCliente);
     List<Casting> castingVigente(Date fecha);
 }

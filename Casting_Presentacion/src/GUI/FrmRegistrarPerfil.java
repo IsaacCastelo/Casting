@@ -417,18 +417,23 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
  */
     public void llenarTablaCasting() {
         List<Casting> productos = castingBO.getCasting();
-        DefaultTableModel modelo = (DefaultTableModel) tblCasting.getModel();
-        modelo.setRowCount(0);
-        for (Casting prov : productos) {
-            Object[] fila = new Object[6];
-            fila[0] = prov.getNombre();
-            fila[1] = prov.getAgente().getNombre();
-            fila[2] = prov.getCliente().getNombre();
-            fila[3] = prov.getCosto();
-            fila[4] = prov.getDescripcion();
-            modelo.addRow(fila);
+        if(productos!=null){
+            DefaultTableModel modelo = (DefaultTableModel) tblCasting.getModel();
+            modelo.setRowCount(0);
+            for (Casting prov : productos) {
+                Object[] fila = new Object[6];
+                fila[0] = prov.getNombre();
+                fila[1] = prov.getAgente().getNombre();
+                fila[2] = prov.getCliente().getNombre();
+                fila[3] = prov.getCosto();
+                fila[4] = prov.getDescripcion();
+                modelo.addRow(fila);
+            }
         }
-
+        else{
+            JOptionPane.showMessageDialog(null, "No hay castings", "Casting", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

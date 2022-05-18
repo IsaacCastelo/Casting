@@ -36,17 +36,38 @@ public class CastingBO implements ICastingBO{
     
     @Override
     public List<Casting> getCasting(){
-        return castingDAO.consultarTodos();
+        if(castingDAO.consultarTodos()!=null){
+            return castingDAO.consultarTodos();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No hay castings", "Casting", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    
     }
     
     @Override
     public List<Casting> getCastingNombre(String nombre){
-        return castingDAO.getCastingNombre(nombre);
+        if(castingDAO.getCastingNombre(nombre)!=null){
+            return castingDAO.getCastingNombre(nombre);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No hay coincidencias", "Casting", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    
+        
     }
     
     @Override
-    public Casting getCastingID(long idCliente){
-        return castingDAO.getCastingID(idCliente);
+    public List<Casting> getCastingID(long idCliente){
+        if(castingDAO.getCastingID(idCliente)!=null){
+            return castingDAO.getCastingID(idCliente);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No hay coincidencias", "Casting", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
     }
     
      @Override

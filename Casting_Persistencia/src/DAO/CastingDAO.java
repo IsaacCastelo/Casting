@@ -58,7 +58,7 @@ public class CastingDAO implements ICastingDAO{
     }
     
     @Override
-    public Casting getCastingID(long idCliente) {
+    public List<Casting> getCastingID(long idCliente) {
         MongoCollection<Casting> coleccion = this.getColeccion();
         List<Document> etapas = new ArrayList<>();
         etapas.add(new Document()
@@ -75,7 +75,7 @@ public class CastingDAO implements ICastingDAO{
         if (Castings.isEmpty()){
             return null;
         }else{
-            return Castings.get(0);
+            return Castings;
         }
     }
     

@@ -8,42 +8,33 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 public class Fase {
-    private ObjectId id;
-    private int numero;
+    private int id;
     private Date fechaInicio;
     private List<ObjectId> idsPruebas;
     private List<Prueba> pruebas;
+    private Casting casting;
 
     public Fase() {
     }
 
-    public Fase(ObjectId id, int numero, Date fechaInicio, List<ObjectId> idsPruebas, List<Prueba> pruebas) {
-        this.id = id;
-        this.numero = numero;
+    public Fase(int numero, Date fechaInicio, List<ObjectId> idsPruebas, List<Prueba> pruebas) {
+        this.id = numero;
         this.fechaInicio = fechaInicio;
         this.idsPruebas = idsPruebas;
         this.pruebas = pruebas;
     }
 
     public Fase(int numero, Date fechaInicio) {
-        this.numero = numero;
+        this.id = numero;
         this.fechaInicio = fechaInicio;
     }
 
-    public ObjectId getId() {
+    public int getNumero() {
         return id;
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
-    public int getNumero() {
-        return numero;
-    }
-
     public void setNumero(int numero) {
-        this.numero = numero;
+        this.id = numero;
     }
 
     public Date getFechaInicio() {
@@ -60,6 +51,14 @@ public class Fase {
 
     public void setIdsPruebas(List<ObjectId> idsPruebas) {
         this.idsPruebas = idsPruebas;
+    }
+
+    public Casting getCasting() {
+        return casting;
+    }
+
+    public void setCasting(Casting casting) {
+        this.casting = casting;
     }
 
     public List<Prueba> getPruebas() {
@@ -82,7 +81,7 @@ public class Fase {
 
     @Override
     public String toString() {
-        return "Fase{numFase="+numero + ", fecha=" + fechaInicio+'}';
+        return "Fase{numFase="+id + ", fecha=" + fechaInicio+", Casting="+ casting+'}';
     }
 
 }

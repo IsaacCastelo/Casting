@@ -5,9 +5,15 @@
  */
 package GUI;
 
+import BO.CastingBO;
+import Interfaces.ICastingBO;
+import entidades.Agente;
+import entidades.Casting;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Proyecto Final - Casting
@@ -17,11 +23,13 @@ import javax.swing.JOptionPane;
  */
 public class FrmBuscarCasting extends javax.swing.JFrame {
 
+    ICastingBO castingBO = new CastingBO();
     /**
      * Creates new form FrmBuscarCasting
      */
     public FrmBuscarCasting() {
         initComponents();
+        llenarTablaCastings();
     }
 
     @SuppressWarnings("unchecked")
@@ -29,16 +37,13 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCastings = new javax.swing.JTable();
         btnSalir = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        cmbSeleccion = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        txtCodigoCasting = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
-        txtFechaContratacion = new javax.swing.JTextField();
+        txtCampo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -46,25 +51,25 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCastings.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código del Casting", "Nombre del Casting", "Fecha del Casting"
+                "ID", "Nombre", "fecha", "Costo", "Tipo", "Descripcion", "Cliente", "Agente"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblCastings);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 545, 226));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 880, 226));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/salir_32_1.gif"))); // NOI18N
         btnSalir.setText("Salir");
@@ -75,19 +80,14 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(883, 274, -1, -1));
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, -1, -1));
 
-        jLabel1.setText("ID de Casting");
-        jLabel1.setForeground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+        jLabel5.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel5.setText("Buscar por:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
 
-        jLabel2.setForeground(new java.awt.Color(204, 255, 255));
-        jLabel2.setText("Nombre");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
-
-        jLabel3.setForeground(new java.awt.Color(204, 255, 255));
-        jLabel3.setText("Fecha de Contratación");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        cmbSeleccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------", "ID", "Nombre", "Fecha" }));
+        getContentPane().add(cmbSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, -1, -1));
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/buscar.png"))); // NOI18N
         btnBuscar.setText("Buscar");
@@ -98,7 +98,7 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 252, -1, -1));
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, -1, -1));
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
@@ -109,14 +109,12 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
                 btnLimpiarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 252, -1, -1));
-        getContentPane().add(txtCodigoCasting, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 160, -1));
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 160, -1));
-        getContentPane().add(txtFechaContratacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 160, -1));
+        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
+        getContentPane().add(txtCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 160, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Fondo.png"))); // NOI18N
         jLabel4.setText("jLabel4");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -20, 1040, 430));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1030, 430));
 
         pack();
         setLocationRelativeTo(null);
@@ -128,12 +126,81 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         if (validarCampos()) {
-            System.out.println("campos llenos");
+            if(cmbSeleccion.getSelectedItem().equals("ID")){
+                List<Casting> productos = castingBO.getCastingID(Long.parseLong(txtCampo.getText()));
+                DefaultTableModel modelo = (DefaultTableModel) tblCastings.getModel();
+                modelo.setRowCount(0);
+                for (Casting prov : productos) {
+                    Object[] fila = new Object[9];
+                    fila[0] = prov.getNumCasting();
+                    fila[1] = prov.getNombre();
+                    String fechaI = prov.getFechaContratacion().getDate()+"/";
+                    if(prov.getFechaContratacion().getMonth()<10){
+                        fechaI = fechaI+"0"+ prov.getFechaContratacion().getMonth()+"/";
+                        fechaI = fechaI + (prov.getFechaContratacion().getYear()+1900)+ "";
+                        fila[2] = fechaI;
+                        fila[3] = prov.getCosto();
+                        fila[4] = prov.getTipo();
+                        fila[5] = prov.getDescripcion();
+                        fila[6] = prov.getCliente().getNombre();
+                        fila[7] = prov.getAgente().getNombre();
+                        modelo.addRow(fila);
+                    }
+                }
+            }
+            if(cmbSeleccion.getSelectedItem().equals("Nombre")){
+                List<Casting> productos = castingBO.getCastingNombre(txtCampo.getText());
+                DefaultTableModel modelo = (DefaultTableModel) tblCastings.getModel();
+                modelo.setRowCount(0);
+                for (Casting prov : productos) {
+                    Object[] fila = new Object[9];
+                    fila[0] = prov.getNumCasting();
+                    fila[1] = prov.getNombre();
+                    String fechaI = prov.getFechaContratacion().getDate()+"/";
+                    if(prov.getFechaContratacion().getMonth()<10){
+                        fechaI = fechaI+"0"+ prov.getFechaContratacion().getMonth()+"/";
+                        fechaI = fechaI + (prov.getFechaContratacion().getYear()+1900)+ "";
+                        fila[2] = fechaI;
+                        fila[3] = prov.getCosto();
+                        fila[4] = prov.getTipo();
+                        fila[5] = prov.getDescripcion();
+                        fila[6] = prov.getCliente().getNombre();
+                        fila[7] = prov.getAgente().getNombre();
+                        modelo.addRow(fila);
+                    }
+                }
+            }
+            if(cmbSeleccion.getSelectedItem().equals("Fecha")){
+                List<Casting> productos = castingBO.getCasting();
+                DefaultTableModel modelo = (DefaultTableModel) tblCastings.getModel();
+                modelo.setRowCount(0);
+                for (Casting prov : productos) {
+                    Object[] fila = new Object[9];
+                    fila[0] = prov.getNumCasting();
+                    fila[1] = prov.getNombre();
+                    String fechaI = prov.getFechaContratacion().getDate()+"/";
+                    if(prov.getFechaContratacion().getMonth()<10){
+                        fechaI = fechaI+"0"+ prov.getFechaContratacion().getMonth()+"/";
+                        fechaI = fechaI + (prov.getFechaContratacion().getYear()+1900)+ "";
+                        fila[2] = fechaI;
+                        fila[3] = prov.getCosto();
+                        fila[4] = prov.getTipo();
+                        fila[5] = prov.getDescripcion();
+                        fila[6] = prov.getCliente().getNombre();
+                        fila[7] = prov.getAgente().getNombre();
+                        if(fechaI.equals(txtCampo.getText())){
+                        modelo.addRow(fila);
+                        }
+                    }
+                    
+                }
+            }
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiarCampos();
+        llenarTablaCastings();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
 /**
@@ -141,15 +208,41 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
  * Metodo para limpiar todos los campos de texto
  */
     public void limpiarCampos(){
-        txtNombre.setText("");
-        txtCodigoCasting.setText("");
-        txtFechaContratacion.setText("");
-        
+        txtCampo.setText("");
+        cmbSeleccion.setSelectedIndex(0);
     }
     
+/**
+ *
+ * Metodo para llenar la tabla de castings
+ */
+    public void llenarTablaCastings() {
+        List<Casting> productos = castingBO.getCasting();
+        DefaultTableModel modelo = (DefaultTableModel) tblCastings.getModel();
+        modelo.setRowCount(0);
+        for (Casting prov : productos) {
+            Object[] fila = new Object[9];
+            fila[0] = prov.getNumCasting();
+            fila[1] = prov.getNombre();
+            String fechaI = prov.getFechaContratacion().getDate()+"/";
+            if(prov.getFechaContratacion().getMonth()<10){
+                fechaI = fechaI+"0"+ prov.getFechaContratacion().getMonth()+"/";
+                fechaI = fechaI + (prov.getFechaContratacion().getYear()+1900)+ "";
+                fila[2] = fechaI;
+                fila[3] = prov.getCosto();
+                fila[4] = prov.getTipo();
+                fila[5] = prov.getDescripcion();
+                fila[6] = prov.getCliente().getNombre();
+                fila[7] = prov.getAgente().getNombre();
+                modelo.addRow(fila);
+            }
+        }
+
+    }
+  
     public boolean validarCampos(){
-        if (txtNombre.getText().length() == 0 || txtFechaContratacion.getText().length() == 0 || txtCodigoCasting.getText().length() == 0) {
-            JOptionPane.showMessageDialog(this, "Campos sin llenar", "Casting", JOptionPane.ERROR_MESSAGE);
+        if ((txtCampo.getText().length() == 0)||(cmbSeleccion.getSelectedIndex() == 0)) {
+            JOptionPane.showMessageDialog(this, "Campo sin llenar", "Buscar", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         else
@@ -160,14 +253,11 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JComboBox<String> cmbSeleccion;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtCodigoCasting;
-    private javax.swing.JTextField txtFechaContratacion;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTable tblCastings;
+    private javax.swing.JTextField txtCampo;
     // End of variables declaration//GEN-END:variables
 }
