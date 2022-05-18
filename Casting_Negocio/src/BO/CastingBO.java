@@ -20,8 +20,11 @@ public class CastingBO implements ICastingBO{
     
     @Override
     public void regsistrar(Casting casting){
-        if(!(validarClienteVigente(casting.getFechaContratacion()))){
+        if(!(validarCastingExiste(casting.getNombre()))){
             castingDAO.agregar(casting);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Nombre de casting repetido", "Casting", JOptionPane.ERROR_MESSAGE); 
         }
     }
     
@@ -42,14 +45,14 @@ public class CastingBO implements ICastingBO{
     }
     
     @Override
-    public Casting getCastingID(ObjectId idCliente){
+    public Casting getCastingID(long idCliente){
         return castingDAO.getCastingID(idCliente);
     }
     
      @Override
-    public boolean validarClienteVigente(Date fecha){
-        if(castingDAO.castingVigente(fecha)==null){
-            JOptionPane.showMessageDialog(null, "No hay casting vigente", "Casting", JOptionPane.ERROR_MESSAGE); 
+    public boolean validarCastingExiste(String nombre){
+        if(castingDAO.getCastingNombre(nombre)==null){
+            
             return false;
         }
         else{

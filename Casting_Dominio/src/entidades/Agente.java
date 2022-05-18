@@ -86,7 +86,7 @@ public class Agente extends Persona{
 
     @Override
     public String toString() {
-        return "Agente{" + "id=" + id + ", numEmpleado=" + numEmpleado + ", RFC=" + RFC + '}';
+        return "Agente{" + "id: " + numEmpleado +", Nombre: "+getNombre()+", Telefono: "+ getTelefono()+", CURP: "+ getCurp()+ ", RFC: " + RFC + '}';
     }
     
 }

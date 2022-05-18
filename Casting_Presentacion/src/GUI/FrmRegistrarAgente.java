@@ -53,7 +53,7 @@ public class FrmRegistrarAgente extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaClientes = new javax.swing.JTable();
+        tablaAgente = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
 
         jLabel8.setText("jLabel8");
@@ -165,7 +165,7 @@ public class FrmRegistrarAgente extends javax.swing.JFrame {
         });
         getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
 
-        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tablaAgente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -181,12 +181,12 @@ public class FrmRegistrarAgente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaAgente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaClientesMouseClicked(evt);
+                tablaAgenteMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tablaClientes);
+        jScrollPane1.setViewportView(tablaAgente);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 570, 354));
 
@@ -221,24 +221,24 @@ public class FrmRegistrarAgente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
+    private void tablaAgenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaAgenteMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tablaClientes.getModel();
-        String id = model.getValueAt(tablaClientes.getSelectedRow(), 0).toString();
-        String nombre = model.getValueAt(tablaClientes.getSelectedRow(), 1).toString();
-        String telefono = model.getValueAt(tablaClientes.getSelectedRow(), 2).toString();
-        String curp = model.getValueAt(tablaClientes.getSelectedRow(), 3).toString();
-        String rfc = model.getValueAt(tablaClientes.getSelectedRow(), 4).toString();
+        DefaultTableModel model = (DefaultTableModel) tablaAgente.getModel();
+        String id = model.getValueAt(tablaAgente.getSelectedRow(), 0).toString();
+        String nombre = model.getValueAt(tablaAgente.getSelectedRow(), 1).toString();
+        String telefono = model.getValueAt(tablaAgente.getSelectedRow(), 2).toString();
+        String curp = model.getValueAt(tablaAgente.getSelectedRow(), 3).toString();
+        String rfc = model.getValueAt(tablaAgente.getSelectedRow(), 4).toString();
         txtIDAgente.setText(id);
         txtNombre.setText(nombre);
         txtTelefono.setText(telefono);
         txtCurp.setText(curp);
         txtRfc.setText(rfc);
-    }//GEN-LAST:event_tablaClientesMouseClicked
+    }//GEN-LAST:event_tablaAgenteMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        DefaultTableModel model = (DefaultTableModel) tablaClientes.getModel();
-        String id = model.getValueAt(tablaClientes.getSelectedRow(), 0).toString();
+        DefaultTableModel model = (DefaultTableModel) tablaAgente.getModel();
+        String id = model.getValueAt(tablaAgente.getSelectedRow(), 0).toString();
         if(id.length()>0){
             int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el cliente seleccionado?", "Cliente", JOptionPane.YES_NO_OPTION);
             if(respuesta == 0){
@@ -343,8 +343,8 @@ public class FrmRegistrarAgente extends javax.swing.JFrame {
  * Metodo para llenar la tabla
  */
     public void llenarTabla() {
-        List<Agente> productos = agenteBO.getCliente();
-        DefaultTableModel modelo = (DefaultTableModel) tablaClientes.getModel();
+        List<Agente> productos = agenteBO.getAgente();
+        DefaultTableModel modelo = (DefaultTableModel) tablaAgente.getModel();
         modelo.setRowCount(0);
         for (Agente prov : productos) {
             Object[] fila = new Object[6];
@@ -372,7 +372,7 @@ public class FrmRegistrarAgente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaClientes;
+    private javax.swing.JTable tablaAgente;
     private javax.swing.JTextField txtCurp;
     private javax.swing.JTextField txtIDAgente;
     private javax.swing.JTextField txtNombre;

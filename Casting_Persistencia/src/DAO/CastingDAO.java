@@ -57,12 +57,12 @@ public class CastingDAO implements ICastingDAO{
     }
     
     @Override
-    public Casting getCastingID(ObjectId idCliente) {
+    public Casting getCastingID(long idCliente) {
         MongoCollection<Casting> coleccion = this.getColeccion();
         List<Document> etapas = new ArrayList<>();
         etapas.add(new Document()
             .append("$match", new Document()
-                .append("_id", idCliente)));
+                .append("numCasting", idCliente)));
         etapas.add(new Document()
             .append("$lookup", new Document()
                 .append("from", "repartidores")

@@ -14,4 +14,5 @@ public interface IPerfilBO {
     void regsistrar(Perfil perfil);
     void eliminar(Perfil perfil);
     List<Perfil> getPerfil();
+    boolean validarIDExiste(long id);
 }

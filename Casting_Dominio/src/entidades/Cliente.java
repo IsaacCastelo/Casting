@@ -131,7 +131,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + numCliente + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + ", actividad=" + actividad + ", personaContacto=" + personaContacto + '}';
+        return "Cliente{" + "id=" + numCliente + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + ", actividad=" + actividad + ", personaContacto=" + personaContacto.getNombre() + '}';
     }
 
 }

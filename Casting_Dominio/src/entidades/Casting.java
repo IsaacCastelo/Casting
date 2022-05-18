@@ -10,35 +10,39 @@ import org.bson.types.ObjectId;
 
 public class Casting {
     private ObjectId id;
+    private long numCasting;
     private String nombre;
     private String descripcion;
     private Date fechaContratacion;
     private Cliente cliente;
     private float costo;
     private Agente agente;
+    private String tipo;
     private List<ObjectId> idsPerfiles;
-    private List<Perfil> perfiles;
+    private List<Fase> fases;
 
     public Casting() {
     }
 
-    public Casting(Cliente cliente, String nombre, Date fechaContratacion, float costo, Agente agente, String descripcion) {
+    public Casting(long numCasting, Cliente cliente, String nombre, Date fechaContratacion, float costo, Agente agente, String descripcion, List<Fase> fases, String tipo) {
+        this.numCasting = numCasting;
         this.nombre = nombre;
         this.fechaContratacion = fechaContratacion;
         this.cliente = cliente;
         this.costo = costo;
         this.descripcion = descripcion;
         this.agente = agente;
+        this.fases = fases;
+        this.tipo=tipo;
     }
 
-    public Casting(String nombre, Direccion direccion, Date fechaContratacion, Cliente cliente, float costo, Agente agente, List<ObjectId> idsPerfiles, List<Perfil> perfiles) {
+    public Casting(String nombre, Direccion direccion, Date fechaContratacion, Cliente cliente, float costo, Agente agente, List<Perfil> perfiles) {
         this.nombre = nombre;
         this.fechaContratacion = fechaContratacion;
         this.cliente = cliente;
         this.costo = costo;
-//        this.agente = agente;
+        this.agente = agente;
         this.idsPerfiles = idsPerfiles;
-        this.perfiles = perfiles;
     }
 
     public ObjectId getId() {
@@ -47,6 +51,14 @@ public class Casting {
 
     public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public long getNumCasting() {
+        return numCasting;
+    }
+
+    public void setNumCasting(long numCasting) {
+        this.numCasting = numCasting;
     }
 
     public String getNombre() {
@@ -97,12 +109,12 @@ public class Casting {
         this.idsPerfiles = idsPerfiles;
     }
 
-    public List<Perfil> getPerfiles() {
-        return perfiles;
+    public List<Fase> getFases() {
+        return fases;
     }
 
-    public void setPerfiles(List<Perfil> perfiles) {
-        this.perfiles = perfiles;
+    public void setFase(List<Fase> fases) {
+        this.fases = fases;
     }
     
     public String getDescripcion() {
@@ -111,6 +123,14 @@ public class Casting {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     @Override
@@ -123,7 +143,7 @@ public class Casting {
         hash = 83 * hash + Float.floatToIntBits(this.costo);
 //        hash = 83 * hash + Objects.hashCode(this.agente);
         hash = 83 * hash + Objects.hashCode(this.idsPerfiles);
-        hash = 83 * hash + Objects.hashCode(this.perfiles);
+        hash = 83 * hash + Objects.hashCode(this.fases);
         return hash;
     }
 
@@ -161,7 +181,7 @@ public class Casting {
         if (!Objects.equals(this.idsPerfiles, other.idsPerfiles)) {
             return false;
         }
-        if (!Objects.equals(this.perfiles, other.perfiles)) {
+        if (!Objects.equals(this.fases, other.fases)) {
             return false;
         }
         return true;
@@ -169,7 +189,8 @@ public class Casting {
 
     @Override
     public String toString() {
-        return  nombre + ", fechaContratacion: " + fechaContratacion + ", Cliente: " + cliente.getNombre() + ", costo: " + costo + ", Descripcion: " + descripcion;
+        return  "id: "+ numCasting +"nombre: " + nombre + ", fechaContratacion: " + fechaContratacion + ", tipo: "+ tipo+", costo: " + costo + ", Descripcion: " + descripcion + ", Cliente: " + cliente.getNombre() +", Agente: "+ agente.getNombre();
     }
+
     
 }

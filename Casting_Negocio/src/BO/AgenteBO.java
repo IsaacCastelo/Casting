@@ -34,7 +34,7 @@ public class AgenteBO implements IAgenteBO{
     }
     
     @Override
-    public List<Agente> getCliente(){
+    public List<Agente> getAgente(){
         return agenteBO.consultarTodos();
     }
     

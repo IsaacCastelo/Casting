@@ -41,7 +41,7 @@ public class PerfilDAO implements IPerfilDAO{
     public boolean eliminar(Perfil perfil) {
         // TODO: MANEJAR POSIBLES EXCEPCIONES...
         MongoCollection<Perfil> coleccion = this.getColeccion();
-        coleccion.deleteOne(eq("estado",perfil.getEstado()));
+        coleccion.deleteOne(eq("numPerfil",perfil.getNumPerfil()));
         return true;
     }
     
@@ -59,30 +59,12 @@ public class PerfilDAO implements IPerfilDAO{
     }
 
     @Override
-    public Perfil consultar(ObjectId idCliente) {
+    public Perfil consultar(long idPerfil) {
         MongoCollection<Perfil> coleccion = this.getColeccion();
         List<Document> etapas = new ArrayList<>();
         etapas.add(new Document()
             .append("$match", new Document()
-                .append("_id", idCliente)));
-        etapas.add(new Document()
-            .append("$lookup", new Document()
-                .append("from", "repartidores")
-                .append("localField", "idsRepartidores")
-                .append("foreignField", "_id")
-                .append("as", "repartidores")));
-        List<Perfil> Perfiles = new LinkedList<>();
-        coleccion.aggregate(etapas).into(Perfiles);
-        return Perfiles.get(0);
-    }
-    
-    @Override
-    public Perfil consultarNombre(String nombre){
-        MongoCollection<Perfil> coleccion = this.getColeccion();
-        List<Document> etapas = new ArrayList<>();
-        etapas.add(new Document()
-            .append("$match", new Document()
-                .append("nombre", nombre)));
+                .append("numPerfil", idPerfil)));
         etapas.add(new Document()
             .append("$lookup", new Document()
                 .append("from", "repartidores")
@@ -91,6 +73,11 @@ public class PerfilDAO implements IPerfilDAO{
                 .append("as", "repartidores")));
         List<Perfil> perfiles = new LinkedList<>();
         coleccion.aggregate(etapas).into(perfiles);
-        return perfiles.get(0);
+        if (perfiles.isEmpty()) {
+            return null;
+        } else {
+            return perfiles.get(0);
+        }
     }
+   
 }

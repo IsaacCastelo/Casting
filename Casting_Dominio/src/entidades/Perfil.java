@@ -6,41 +6,39 @@ package entidades;
 import org.bson.types.ObjectId;
 
 public class Perfil {
-    private ObjectId id;
+    private long numPerfil;
     private String estado;
     private String sexo;
     private String rangoAltura;
     private String rangoEdad;
     private String colorPelo;
     private String colorOjos;
-    private Especialidad especialidad;
+    private String especialidad;
     private boolean experiencia;
+    private Casting casting;
 
     public Perfil() {
     }
 
-    public Perfil(ObjectId id, String estado, String sexo, String rangoEdad, String rangoAltura, String colorPelo, String colorOjos, Especialidad especialidad, boolean experiencia) {
-        this.id = id;
+    public Perfil(long id, String estado, String sexo, String rangoEdad, String rangoAltura, String colorPelo, String colorOjos, String especialidad, boolean experiencia, Casting casting) {
+        this.numPerfil = id;
         this.estado = estado;
         this.sexo = sexo;
         this.rangoAltura = rangoAltura;
         this.rangoEdad = rangoEdad;
-//        this.alturaMin = alturaMin;
-//        this.alturaMax = alturaMax;
-//        this.edadMin = edadMin;
-//        this.edadMax = edadMax;
         this.colorPelo = colorPelo;
         this.colorOjos = colorOjos;
         this.especialidad = especialidad;
         this.experiencia = experiencia;
+        this.casting = casting;
     }
 
-    public ObjectId getId() {
-        return id;
+    public long getNumPerfil() {
+        return numPerfil;
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
+    public void setNumPerfil(long numPerfil) {
+        this.numPerfil = numPerfil;
     }
 
     public String getEstado() {
@@ -91,11 +89,11 @@ public class Perfil {
         this.colorOjos = colorOjos;
     }
 
-    public Especialidad getEspecialidad() {
+    public String getEspecialidad() {
         return especialidad;
     }
 
-    public void setEspecialidad(Especialidad especialidad) {
+    public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
 
@@ -105,6 +103,14 @@ public class Perfil {
 
     public void setExperiencia(boolean experiencia) {
         this.experiencia = experiencia;
+    }
+
+    public Casting getCasting() {
+        return casting;
+    }
+
+    public void setCasting(Casting casting) {
+        this.casting = casting;
     }
 
     @Override

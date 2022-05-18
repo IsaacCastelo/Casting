@@ -11,7 +11,7 @@ import java.util.List;
 public interface IAgenteBO {
     void regsistrar(Agente agente);
     void eliminar(Agente agente);
-    List<Agente> getCliente();
+    List<Agente> getAgente();
     boolean validarAgenteExiste(String nombre);
     boolean validarIDExiste(long id);
 }

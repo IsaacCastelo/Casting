@@ -8,7 +8,6 @@ package Interfaces;
 import entidades.Casting;
 import java.util.Date;
 import java.util.List;
-import org.bson.types.ObjectId;
 
 
 public interface ICastingDAO {
@@ -16,6 +15,6 @@ public interface ICastingDAO {
     boolean eliminar(Casting casting);
     List<Casting> consultarTodos();
     List<Casting> getCastingNombre(String nombre);
-    Casting getCastingID(ObjectId idCliente);
+    Casting getCastingID(long idCliente);
     List<Casting> castingVigente(Date fecha);
 }

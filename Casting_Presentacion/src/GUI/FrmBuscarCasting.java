@@ -77,9 +77,9 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
         });
         getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(883, 274, -1, -1));
 
+        jLabel1.setText("ID de Casting");
         jLabel1.setForeground(new java.awt.Color(204, 255, 255));
-        jLabel1.setText("Código de Casting");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
         jLabel2.setForeground(new java.awt.Color(204, 255, 255));
         jLabel2.setText("Nombre");
