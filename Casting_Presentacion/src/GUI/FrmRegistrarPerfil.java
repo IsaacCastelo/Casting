@@ -13,6 +13,7 @@ import entidades.Casting;
 import entidades.Perfil;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -34,8 +35,9 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
      */
     public FrmRegistrarPerfil() {
         initComponents();
-        llenarTablaCasting();
         llenarTabla();
+        llenarTablaCasting();
+        
     }
 
 
@@ -455,7 +457,7 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
  */
     public void llenarTablaCasting() {
         List<Casting> productos = castingBO.getCasting();
-        if(productos!=null){
+        if(!(productos.isEmpty())){
             DefaultTableModel modelo = (DefaultTableModel) tblCasting.getModel();
             modelo.setRowCount(0);
             for (Casting prov : productos) {
@@ -487,6 +489,7 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(null, "No hay castings", "Casting", JOptionPane.ERROR_MESSAGE);
             this.dispose();
+
         }
     }
     
