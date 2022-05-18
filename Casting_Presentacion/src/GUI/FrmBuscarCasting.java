@@ -127,90 +127,129 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         if (validarCampos()) {
             if(cmbSeleccion.getSelectedItem().equals("ID")){
+                if(txtCampo.getText().matches("\\d*")){
                 List<Casting> productos = castingBO.getCastingID(Long.parseLong(txtCampo.getText()));
                 DefaultTableModel modelo = (DefaultTableModel) tblCastings.getModel();
                 modelo.setRowCount(0);
-                if(productos!=null){
-                    for (Casting prov : productos) {
-                        Object[] fila = new Object[9];
-                        fila[0] = prov.getNumCasting();
-                        fila[1] = prov.getNombre();
-                        String fechaI = prov.getFechaContratacion().getDate()+"/";
-                        if(prov.getFechaContratacion().getMonth()<10){
-                            fechaI = fechaI+"0"+ prov.getFechaContratacion().getMonth()+"/";
+                    if(productos!=null){
+                        for (Casting prov : productos) {
+                            Object[] fila = new Object[9];
+                            fila[0] = prov.getNumCasting();
+                            fila[1] = prov.getNombre();
+                            String fechaI = "";
+                            if((prov.getFechaContratacion().getDate())<10){
+                                fechaI = "0"+prov.getFechaContratacion().getDate()+"/";
+                            }
+                            else{
+                                fechaI = prov.getFechaContratacion().getDate()+"/";
+                            }
+                            if((prov.getFechaContratacion().getMonth()+1)<10){
+                                fechaI = fechaI+"0"+ (prov.getFechaContratacion().getMonth()+1)+"/";
+                            }
+                            else{
+                                fechaI = fechaI+ (prov.getFechaContratacion().getMonth()+1)+"/";
+                            }
+                            fechaI = fechaI + (prov.getFechaContratacion().getYear()+1900)+ "";
+                            fila[2] = fechaI;
+                            fila[3] = prov.getCosto();
+                            fila[4] = prov.getTipo();
+                            fila[5] = prov.getDescripcion();
+                            fila[6] = prov.getCliente().getNombre();
+                            fila[7] = prov.getAgente().getNombre();
+                            modelo.addRow(fila);
                         }
-                        else{
-                            fechaI = fechaI+ prov.getFechaContratacion().getMonth()+"/";
-                        }
-                        fechaI = fechaI + (prov.getFechaContratacion().getYear()+1900)+ "";
-                        fila[2] = fechaI;
-                        fila[3] = prov.getCosto();
-                        fila[4] = prov.getTipo();
-                        fila[5] = prov.getDescripcion();
-                        fila[6] = prov.getCliente().getNombre();
-                        fila[7] = prov.getAgente().getNombre();
-                        modelo.addRow(fila);
                     }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Introduzca solo números", "Buscar", JOptionPane.ERROR_MESSAGE);
                 }
             }
             if(cmbSeleccion.getSelectedItem().equals("Nombre")){
-                List<Casting> productos = castingBO.getCastingNombre(txtCampo.getText());
-                DefaultTableModel modelo = (DefaultTableModel) tblCastings.getModel();
-                modelo.setRowCount(0);
-                if(productos!=null){
-                    for (Casting prov : productos) {
-                        Object[] fila = new Object[9];
-                        fila[0] = prov.getNumCasting();
-                        fila[1] = prov.getNombre();
-                        String fechaI = prov.getFechaContratacion().getDate()+"/";
-                        if(prov.getFechaContratacion().getMonth()<10){
-                            fechaI = fechaI+"0"+ prov.getFechaContratacion().getMonth()+"/";
+                if(!(txtCampo.getText().matches("\\d*"))){
+                    List<Casting> productos = castingBO.getCastingNombre(txtCampo.getText());
+                    DefaultTableModel modelo = (DefaultTableModel) tblCastings.getModel();
+                    modelo.setRowCount(0);
+                    if(productos!=null){
+                        for (Casting prov : productos) {
+                            Object[] fila = new Object[9];
+                            fila[0] = prov.getNumCasting();
+                            fila[1] = prov.getNombre();
+                            String fechaI = "";
+                            if((prov.getFechaContratacion().getDate())<10){
+                                fechaI = "0"+prov.getFechaContratacion().getDate()+"/";
+                            }
+                            else{
+                                fechaI = prov.getFechaContratacion().getDate()+"/";
+                            }
+                            if((prov.getFechaContratacion().getMonth()+1)<10){
+                                fechaI = fechaI+"0"+ (prov.getFechaContratacion().getMonth()+1)+"/";
+                            }
+                            else{
+                                fechaI = fechaI+ (prov.getFechaContratacion().getMonth()+1)+"/";
+                            }
+                            if(prov.getFechaContratacion().getMonth()<10){
+                                fechaI = fechaI+"0"+ prov.getFechaContratacion().getMonth()+"/";
+                            }
+                            else{
+                                fechaI = fechaI+ prov.getFechaContratacion().getMonth()+"/";
+                            }
+                            fechaI = fechaI + (prov.getFechaContratacion().getYear()+1900)+ "";
+                            fila[2] = fechaI;
+                            fila[3] = prov.getCosto();
+                            fila[4] = prov.getTipo();
+                            fila[5] = prov.getDescripcion();
+                            fila[6] = prov.getCliente().getNombre();
+                            fila[7] = prov.getAgente().getNombre();
+                            modelo.addRow(fila);
                         }
-                        else{
-                            fechaI = fechaI+ prov.getFechaContratacion().getMonth()+"/";
-                        }
-                        fechaI = fechaI + (prov.getFechaContratacion().getYear()+1900)+ "";
-                        fila[2] = fechaI;
-                        fila[3] = prov.getCosto();
-                        fila[4] = prov.getTipo();
-                        fila[5] = prov.getDescripcion();
-                        fila[6] = prov.getCliente().getNombre();
-                        fila[7] = prov.getAgente().getNombre();
-                        modelo.addRow(fila);
                     }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Introduzca solo letras", "Buscar", JOptionPane.ERROR_MESSAGE);
                 }
             }
             if(cmbSeleccion.getSelectedItem().equals("Fecha")){
-                List<Casting> productos = castingBO.getCasting();
-                DefaultTableModel modelo = (DefaultTableModel) tblCastings.getModel();
-                modelo.setRowCount(0);
-                if(productos!=null){
-                    for (Casting prov : productos) {
-                        Object[] fila = new Object[9];
-                        fila[0] = prov.getNumCasting();
-                        fila[1] = prov.getNombre();
-                        String fechaI = prov.getFechaContratacion().getDate()+"/";
-                        if(prov.getFechaContratacion().getMonth()<10){
-                            fechaI = fechaI+"0"+ prov.getFechaContratacion().getMonth()+"/";
+                if(txtCampo.getText().matches("^\\d{2}/\\d{2}/\\d{4}$")){
+                    List<Casting> productos = castingBO.getCasting();
+                    DefaultTableModel modelo = (DefaultTableModel) tblCastings.getModel();
+                    modelo.setRowCount(0);
+                    if(productos!=null){
+                        for (Casting prov : productos) {
+                            Object[] fila = new Object[9];
+                            fila[0] = prov.getNumCasting();
+                            fila[1] = prov.getNombre();
+                            String fechaI = "";
+                            if((prov.getFechaContratacion().getDate())<10){
+                                fechaI = "0"+prov.getFechaContratacion().getDate()+"/";
+                            }
+                            else{
+                                fechaI = prov.getFechaContratacion().getDate()+"/";
+                            }
+                            if((prov.getFechaContratacion().getMonth()+1)<10){
+                                fechaI = fechaI+"0"+ (prov.getFechaContratacion().getMonth()+1)+"/";
+                            }
+                            else{
+                                fechaI = fechaI+ (prov.getFechaContratacion().getMonth()+1)+"/";
+                            }
+                            fechaI = fechaI + (prov.getFechaContratacion().getYear()+1900)+ "";
+                            fila[2] = fechaI;
+                            fila[3] = prov.getCosto();
+                            fila[4] = prov.getTipo();
+                            fila[5] = prov.getDescripcion();
+                            fila[6] = prov.getCliente().getNombre();
+                            fila[7] = prov.getAgente().getNombre();
+                            if(fechaI.equals(txtCampo.getText())){
+                                modelo.addRow(fila);
+                            }
+
                         }
-                        else{
-                            fechaI = fechaI+ prov.getFechaContratacion().getMonth()+"/";
-                        }
-                        fechaI = fechaI + (prov.getFechaContratacion().getYear()+1900)+ "";
-                        fila[2] = fechaI;
-                        fila[3] = prov.getCosto();
-                        fila[4] = prov.getTipo();
-                        fila[5] = prov.getDescripcion();
-                        fila[6] = prov.getCliente().getNombre();
-                        fila[7] = prov.getAgente().getNombre();
-                        if(fechaI.equals(txtCampo.getText())){
-                            modelo.addRow(fila);
-                        }
-                        
-                    }
-                    if(modelo.getRowCount()==0){
+                        if(modelo.getRowCount()==0){
                             JOptionPane.showMessageDialog(null, "No hay coincidencias", "Casting", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "necesario formato dd/mm/YYYY", "Casting", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -243,18 +282,28 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
             Object[] fila = new Object[9];
             fila[0] = prov.getNumCasting();
             fila[1] = prov.getNombre();
-            String fechaI = prov.getFechaContratacion().getDate()+"/";
-            if(prov.getFechaContratacion().getMonth()<10){
-                fechaI = fechaI+"0"+ prov.getFechaContratacion().getMonth()+"/";
-                fechaI = fechaI + (prov.getFechaContratacion().getYear()+1900)+ "";
-                fila[2] = fechaI;
-                fila[3] = prov.getCosto();
-                fila[4] = prov.getTipo();
-                fila[5] = prov.getDescripcion();
-                fila[6] = prov.getCliente().getNombre();
-                fila[7] = prov.getAgente().getNombre();
-                modelo.addRow(fila);
+            String fechaI = "";
+            if((prov.getFechaContratacion().getDate())<10){
+                fechaI = "0"+prov.getFechaContratacion().getDate()+"/";
             }
+            else{
+                fechaI = prov.getFechaContratacion().getDate()+"/";
+            }
+            if((prov.getFechaContratacion().getMonth()+1)<10){
+                fechaI = fechaI+"0"+ (prov.getFechaContratacion().getMonth()+1)+"/";
+            }
+            else{
+                fechaI = fechaI+ (prov.getFechaContratacion().getMonth()+1)+"/";
+            }
+            fechaI = fechaI + (prov.getFechaContratacion().getYear()+1900)+ "";
+            fila[2] = fechaI;
+            fila[3] = prov.getCosto();
+            fila[4] = prov.getTipo();
+            fila[5] = prov.getDescripcion();
+            fila[6] = prov.getCliente().getNombre();
+            fila[7] = prov.getAgente().getNombre();
+            modelo.addRow(fila);
+            
         }
 
     }

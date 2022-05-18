@@ -21,7 +21,12 @@ public class CastingBO implements ICastingBO{
     @Override
     public void regsistrar(Casting casting){
         if(!(validarCastingExiste(casting.getNombre()))){
-            castingDAO.agregar(casting);
+            if(!(validarIDExiste(casting.getNumCasting()))){
+                castingDAO.agregar(casting);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "ID de casting repetido", "Casting", JOptionPane.ERROR_MESSAGE); 
+            }
         }
         else{
             JOptionPane.showMessageDialog(null, "Nombre de casting repetido", "Casting", JOptionPane.ERROR_MESSAGE); 
@@ -73,6 +78,17 @@ public class CastingBO implements ICastingBO{
      @Override
     public boolean validarCastingExiste(String nombre){
         if(castingDAO.getCastingNombre(nombre)==null){
+            
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    
+    @Override
+    public boolean validarIDExiste(long id){
+        if(castingDAO.getCastingID(id)==null){
             
             return false;
         }

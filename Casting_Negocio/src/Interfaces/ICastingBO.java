@@ -17,4 +17,5 @@ public interface ICastingBO {
     List<Casting> getCastingNombre(String nombre);
     List<Casting> getCastingID(long idCliente);
     boolean validarCastingExiste(String nombre);
+    boolean validarIDExiste(long id);
 }
