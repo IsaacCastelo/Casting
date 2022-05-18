@@ -23,6 +23,12 @@ public class FaseBO implements IFaseBO{
         }
     }
    
+    @Override
+    public void eliminar(Fase fase){
+        if(!(validarFecha(fase.getFechaInicio()))){
+            faseDAO.eliminar(fase);
+        }
+    }
     
     @Override
     public List<Fase> getCliente(){

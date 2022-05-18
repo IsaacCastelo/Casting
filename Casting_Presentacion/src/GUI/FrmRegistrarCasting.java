@@ -5,8 +5,10 @@
  */
 package GUI;
 
+import BO.CastingBO;
 import BO.ClienteBO;
 import BO.FaseBO;
+import Interfaces.ICastingBO;
 import Interfaces.IClienteBO;
 import Interfaces.IFaseBO;
 import entidades.Cliente;
@@ -26,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmRegistrarCasting extends javax.swing.JFrame {
     int numeroFase=0;
+    ICastingBO castingBO = new CastingBO();
     IClienteBO clienteBO = new ClienteBO();  
     IFaseBO faseBO = new FaseBO(); 
 

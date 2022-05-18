@@ -5,13 +5,13 @@
  */
 package Interfaces;
 
-import entidades.Fase;
+import entidades.Perfil;
 import java.util.Date;
 import java.util.List;
 
-public interface IFaseBO {
-    void regsistrar(Fase fase);
-    void eliminar(Fase fase);
-    List<Fase> getCliente();
-    boolean validarFecha(Date fechInicio);
+
+public interface IPerfilBO {
+    void regsistrar(Perfil perfil);
+    void eliminar(Perfil perfil);
+    List<Perfil> getPerfil();
 }

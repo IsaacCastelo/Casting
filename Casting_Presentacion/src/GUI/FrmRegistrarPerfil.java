@@ -5,9 +5,17 @@
  */
 package GUI;
 
+import BO.CastingBO;
+import BO.PefilBO;
+import Interfaces.ICastingBO;
+import Interfaces.IPerfilBO;
+import entidades.Casting;
+import entidades.Perfil;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Proyecto Final - Casting
@@ -16,12 +24,16 @@ import javax.swing.JOptionPane;
  * @author Saul Armando Reyna Lopez
  */
 public class FrmRegistrarPerfil extends javax.swing.JFrame {
+    ICastingBO castingBO = new CastingBO();
+    IPerfilBO perfilBO = new PefilBO();
 
     /**
      * Creates new form FrmRegistrarPerfil
      */
     public FrmRegistrarPerfil() {
         initComponents();
+        llenarTablaCasting();
+        llenarTabla();
     }
 
 
@@ -30,7 +42,7 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCasting = new javax.swing.JTable();
         btnSalir = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
@@ -43,10 +55,12 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
         txtOjos = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtCabello = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbEstado = new javax.swing.JComboBox<>();
         cmbEdad = new javax.swing.JComboBox<>();
         cmbAltura = new javax.swing.JComboBox<>();
         cmbSexo = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblPerfil = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -54,17 +68,17 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCasting.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Estado", "Sexo", "Rango altura", "rango edad", "Color cabello", "Color ojos"
+                "Nombre", "Agente", "Cliente", "Costo", "Decripción"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblCasting);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 28, 565, 321));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 565, 190));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/salir_32_1.gif"))); // NOI18N
         btnSalir.setText("Salir");
@@ -75,7 +89,7 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(962, 384, -1, -1));
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 440, -1, -1));
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Floppy.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -136,17 +150,29 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 315, -1, -1));
         getContentPane().add(txtCabello, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 254, 157, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 100, -1));
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "------------------", "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Ciudad de México", "Coahuila", "Colima", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
+        getContentPane().add(cmbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 100, -1));
 
-        cmbEdad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------", "0-15", "5 – 18", "18 - 25", "25 – 35", "35 – 45", "45 – 60", "mayor a 60" }));
+        cmbEdad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------", "0-15", "5-18", "18-25", "25-35", "35-45", "45-60", "60" }));
         getContentPane().add(cmbEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 198, -1, -1));
 
-        cmbAltura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------------", "menos de 1.50", "de 1.50 a 1.70", "de 1.70 a 1.90", "mayor a 1.90" }));
+        cmbAltura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------------", "0-1.50", "1.50-1.70", "1.70-1.90", "1.90" }));
         getContentPane().add(cmbAltura, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 145, -1, -1));
 
         cmbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---------", "Femenino", "Masculino" }));
         getContentPane().add(cmbSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 82, -1, -1));
+
+        tblPerfil.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Estado", "Sexo", "rango altura", "rango edad", "Color cabello", "Color ojos"
+            }
+        ));
+        jScrollPane3.setViewportView(tblPerfil);
+
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 565, 190));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Fondo.png"))); // NOI18N
         jLabel7.setText("jLabel7");
@@ -162,11 +188,30 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (validarCampos()) {
-            System.out.println("campos llenos");
+            Perfil perfil = new Perfil();
+            perfil.setEstado(cmbEstado.getSelectedItem().toString());
+            perfil.setRangoEdad(cmbEdad.getSelectedItem().toString());
+            perfil.setColorPelo(txtCabello.getText());
+            perfil.setColorOjos(txtOjos.getText());
+            perfil.setSexo(cmbSexo.getSelectedItem().toString());
+            perfil.setRangoAltura(cmbAltura.getSelectedItem().toString());
+            perfilBO.regsistrar(perfil);
+            llenarTabla();
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+         if (validarCampos()) {
+            Perfil perfil = new Perfil();
+            perfil.setEstado(cmbEstado.getSelectedItem().toString());
+            perfil.setRangoEdad(cmbEdad.getSelectedItem().toString());
+            perfil.setColorPelo(txtCabello.getText());
+            perfil.setColorOjos(txtOjos.getText());
+            perfil.setSexo(cmbSexo.getSelectedItem().toString());
+            perfil.setRangoAltura(cmbAltura.getSelectedItem().toString());
+            perfilBO.eliminar(perfil);
+            llenarTabla();
+        }
         
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -180,7 +225,7 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
  * Metodo para limpiar todos los campos de texto
  */
     public void limpiarCampos(){
-        cmbEdad.setSelectedIndex(0);
+        cmbEstado.setSelectedIndex(0);
         txtCabello.setText("");
         txtOjos.setText("");
         cmbSexo.setSelectedIndex(0);
@@ -200,8 +245,50 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
             return false;
         }
         else{
+            
             return true;
         }
+    }
+    
+/**
+ *
+ * Metodo para llenar la tabla de perfiles
+ */
+    public void llenarTabla() {
+        List<Perfil> productos = perfilBO.getPerfil();
+        DefaultTableModel modelo = (DefaultTableModel) tblPerfil.getModel();
+        modelo.setRowCount(0);
+        for (Perfil prov : productos) {
+            Object[] fila = new Object[6];
+            fila[0] = prov.getEstado();
+            fila[1] = prov.getSexo();
+            fila[2] = prov.getRangoAltura();
+            fila[3] = prov.getRangoEdad();
+            fila[4] = prov.getColorPelo();
+            fila[5] = prov.getColorOjos();
+            modelo.addRow(fila);
+        }
+
+    }
+    
+/**
+ *
+ * Metodo para llenar la tabla de castings
+ */
+    public void llenarTablaCasting() {
+        List<Casting> productos = castingBO.getCasting();
+        DefaultTableModel modelo = (DefaultTableModel) tblCasting.getModel();
+        modelo.setRowCount(0);
+        for (Casting prov : productos) {
+            Object[] fila = new Object[6];
+            fila[0] = prov.getNombre();
+            fila[1] = prov.getAgente().getNombre();
+            fila[2] = prov.getCliente().getNombre();
+            fila[3] = prov.getCosto();
+            fila[4] = prov.getDescripcion();
+            modelo.addRow(fila);
+        }
+
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -211,8 +298,8 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cmbAltura;
     private javax.swing.JComboBox<String> cmbEdad;
+    private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JComboBox<String> cmbSexo;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -221,7 +308,9 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable tblCasting;
+    private javax.swing.JTable tblPerfil;
     private javax.swing.JTextField txtCabello;
     private javax.swing.JTextField txtOjos;
     // End of variables declaration//GEN-END:variables
