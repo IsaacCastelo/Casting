@@ -170,6 +170,11 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
                 "Estado", "Sexo", "rango altura", "rango edad", "Color cabello", "Color ojos"
             }
         ));
+        tblPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPerfilMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblPerfil);
 
         getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 565, 190));
@@ -197,28 +202,53 @@ public class FrmRegistrarPerfil extends javax.swing.JFrame {
             perfil.setRangoAltura(cmbAltura.getSelectedItem().toString());
             perfilBO.regsistrar(perfil);
             llenarTabla();
+            limpiarCampos();
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-         if (validarCampos()) {
-            Perfil perfil = new Perfil();
-            perfil.setEstado(cmbEstado.getSelectedItem().toString());
-            perfil.setRangoEdad(cmbEdad.getSelectedItem().toString());
-            perfil.setColorPelo(txtCabello.getText());
-            perfil.setColorOjos(txtOjos.getText());
-            perfil.setSexo(cmbSexo.getSelectedItem().toString());
-            perfil.setRangoAltura(cmbAltura.getSelectedItem().toString());
-            perfilBO.eliminar(perfil);
-            llenarTabla();
+        if(txtCabello.getText().length()>0){
+            int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el cliente seleccionado?", "Cliente", JOptionPane.YES_NO_OPTION); 
+            if(respuesta == 0){
+                Perfil perfil = new Perfil();
+                perfil.setEstado(cmbEstado.getSelectedItem().toString());
+                perfil.setRangoEdad(cmbEdad.getSelectedItem().toString());
+                perfil.setColorPelo(txtCabello.getText());
+                perfil.setColorOjos(txtOjos.getText());
+                perfil.setSexo(cmbSexo.getSelectedItem().toString());
+                perfil.setRangoAltura(cmbAltura.getSelectedItem().toString());
+                perfilBO.eliminar(perfil);
+                llenarTabla();
+                limpiarCampos();
+            }
         }
-        
+        else{
+            JOptionPane.showMessageDialog(null, "Seleccione un cliente", "Cliente", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
 
         limpiarCampos();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void tblPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPerfilMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) tblPerfil.getModel();
+        String estado = model.getValueAt(tblPerfil.getSelectedRow(), 0).toString();
+        String sexo = model.getValueAt(tblPerfil.getSelectedRow(), 1).toString();
+        String altura = model.getValueAt(tblPerfil.getSelectedRow(), 2).toString();
+        String edad = model.getValueAt(tblPerfil.getSelectedRow(), 3).toString();
+        String pelo = model.getValueAt(tblPerfil.getSelectedRow(), 4).toString();
+        String ojos = model.getValueAt(tblPerfil.getSelectedRow(), 5).toString();
+        txtCabello.setText(pelo);
+        txtOjos.setText(ojos);
+        cmbAltura.setSelectedItem(altura);
+        cmbEstado.setSelectedItem(estado);
+        cmbEdad.setSelectedItem(edad);
+        cmbSexo.setSelectedItem(sexo);
+        
+    }//GEN-LAST:event_tblPerfilMouseClicked
     
 /**
  *

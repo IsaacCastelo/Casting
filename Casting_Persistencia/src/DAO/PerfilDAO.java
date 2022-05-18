@@ -41,7 +41,7 @@ public class PerfilDAO implements IPerfilDAO{
     public boolean eliminar(Perfil perfil) {
         // TODO: MANEJAR POSIBLES EXCEPCIONES...
         MongoCollection<Perfil> coleccion = this.getColeccion();
-        coleccion.deleteOne(eq("nombre",perfil.getId()));
+        coleccion.deleteOne(eq("estado",perfil.getEstado()));
         return true;
     }
     
