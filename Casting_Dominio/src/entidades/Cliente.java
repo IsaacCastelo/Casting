@@ -7,7 +7,7 @@ import java.util.Objects;
 import org.bson.types.ObjectId;
 
 public class Cliente {
-    private ObjectId id;
+    private long numCliente;
     private String nombre;
     private Direccion direccion;
     private String telefono;
@@ -17,8 +17,8 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(ObjectId id, String nombre, Direccion direccion, String telefono, String actividad, Persona personaContacto) {
-        this.id = id;
+    public Cliente(long id, String nombre, Direccion direccion, String telefono, String actividad, Persona personaContacto) {
+        this.numCliente = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -34,13 +34,15 @@ public class Cliente {
         this.personaContacto = personaContacto;
     }
 
-    public ObjectId getId() {
-        return id;
+    public long getNumCliente() {
+        return numCliente;
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
+    public void setNumCliente(long numCliente) {
+        this.numCliente = numCliente;
     }
+
+    
     
     public String getNombre() {
         return nombre;
@@ -85,7 +87,7 @@ public class Cliente {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.numCliente);
         hash = 59 * hash + Objects.hashCode(this.nombre);
         hash = 59 * hash + Objects.hashCode(this.direccion);
         hash = 59 * hash + Objects.hashCode(this.telefono);
@@ -112,7 +114,7 @@ public class Cliente {
         if (!Objects.equals(this.telefono, other.telefono)) {
             return false;
         }
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.numCliente, other.numCliente)) {
             return false;
         }
         if (!Objects.equals(this.direccion, other.direccion)) {
@@ -129,7 +131,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + ", actividad=" + actividad + ", personaContacto=" + personaContacto + '}';
+        return "Cliente{" + "id=" + numCliente + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + ", actividad=" + actividad + ", personaContacto=" + personaContacto + '}';
     }
 
 }

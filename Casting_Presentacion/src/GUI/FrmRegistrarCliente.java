@@ -39,7 +39,6 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable();
         btnSalir = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -55,6 +54,9 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
         txtNumero = new javax.swing.JTextField();
         txtColonia = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -69,11 +71,11 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Dirección", "Teléfono", "Persona de Contacto", "Tipo de Publicidad"
+                "ID", "Nombre", "Dirección", "Teléfono", "Persona de Contacto", "Tipo de Publicidad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                true, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -100,39 +102,35 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         });
         getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1017, 403, -1, -1));
 
-        jLabel1.setForeground(new java.awt.Color(204, 255, 255));
-        jLabel1.setText("Nombre");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 33, -1, -1));
-
         jLabel2.setForeground(new java.awt.Color(204, 255, 255));
         jLabel2.setText("Dirección");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 215, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
 
         jLabel3.setForeground(new java.awt.Color(204, 255, 255));
         jLabel3.setText("Teléfono");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 79, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(204, 255, 255));
         jLabel4.setText("Persona de Contacto");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 121, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
 
         jLabel5.setForeground(new java.awt.Color(204, 255, 255));
         jLabel5.setText("Tipo de publicidad");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 171, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
         });
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 29, 157, -1));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 157, -1));
 
         txtCalle.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCalleKeyTyped(evt);
             }
         });
-        getContentPane().add(txtCalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 253, 157, -1));
+        getContentPane().add(txtCalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 157, -1));
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Floppy.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -143,7 +141,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 392, -1, -1));
+        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, -1, -1));
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Delete.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
@@ -154,7 +152,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 392, -1, -1));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, -1, -1));
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
@@ -165,7 +163,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
                 btnLimpiarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 392, -1, -1));
+        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, -1, -1));
 
         txtTelefono.setText(" ");
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -173,43 +171,58 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
                 txtTelefonoKeyTyped(evt);
             }
         });
-        getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 75, 157, -1));
+        getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 157, -1));
 
         cmbTipoPublicidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------------", "moda -Publicidad", "cine" }));
-        getContentPane().add(cmbTipoPublicidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 166, 166, -1));
+        getContentPane().add(cmbTipoPublicidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 166, -1));
 
         txtContacto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtContactoKeyTyped(evt);
             }
         });
-        getContentPane().add(txtContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 117, 157, -1));
+        getContentPane().add(txtContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 157, -1));
 
         jLabel6.setForeground(new java.awt.Color(204, 255, 255));
         jLabel6.setText("Calle");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 257, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
 
         jLabel7.setForeground(new java.awt.Color(204, 255, 255));
         jLabel7.setText("Número");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 303, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, -1, -1));
 
         jLabel8.setForeground(new java.awt.Color(204, 255, 255));
         jLabel8.setText("Colonia");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 349, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, -1, -1));
+
+        jLabel10.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel10.setText("Nombre");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, -1, -1));
+
+        jLabel11.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel11.setText("ID");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, -1, -1));
+
+        txtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIDKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 160, -1));
 
         txtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNumeroKeyTyped(evt);
             }
         });
-        getContentPane().add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 299, 157, -1));
+        getContentPane().add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 157, -1));
 
         txtColonia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtColoniaKeyTyped(evt);
             }
         });
-        getContentPane().add(txtColonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 345, 157, -1));
+        getContentPane().add(txtColonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 157, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Fondo.png"))); // NOI18N
         jLabel9.setText("jLabel9");
@@ -228,6 +241,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
            if(validarActividad()){
                //guardar
                Cliente cliente = new Cliente();
+               cliente.setNumCliente(Long.parseLong(txtID.getText()));
                cliente.setNombre(txtNombre.getText());
                Direccion direccion = new Direccion(txtCalle.getText(),txtNumero.getText(),txtColonia.getText());
                cliente.setDireccion(direccion);
@@ -255,6 +269,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
             int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el cliente seleccionado?", "Cliente", JOptionPane.YES_NO_OPTION); 
             if(respuesta == 0){
                Cliente cliente = new Cliente();
+               cliente.setNumCliente(Long.parseLong(txtID.getText()));
                cliente.setNombre(txtNombre.getText());
                Direccion direccion = new Direccion(txtCalle.getText(),txtNumero.getText(),txtColonia.getText());
                cliente.setDireccion(direccion);
@@ -370,13 +385,15 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) tablaClientes.getModel();
-        String nombre = model.getValueAt(tablaClientes.getSelectedRow(), 0).toString();
-        String direccion = model.getValueAt(tablaClientes.getSelectedRow(), 1).toString();
-        String telefono = model.getValueAt(tablaClientes.getSelectedRow(), 2).toString();
-        String contacto = model.getValueAt(tablaClientes.getSelectedRow(), 3).toString();
-        String tipo = model.getValueAt(tablaClientes.getSelectedRow(), 4).toString();
+        String id = model.getValueAt(tablaClientes.getSelectedRow(), 0).toString();
+        String nombre = model.getValueAt(tablaClientes.getSelectedRow(), 1).toString();
+        String direccion = model.getValueAt(tablaClientes.getSelectedRow(), 2).toString();
+        String telefono = model.getValueAt(tablaClientes.getSelectedRow(), 3).toString();
+        String contacto = model.getValueAt(tablaClientes.getSelectedRow(), 4).toString();
+        String tipo = model.getValueAt(tablaClientes.getSelectedRow(), 5).toString();
         String colonia = direccion.substring(direccion.indexOf("Colonia "));
         String numero = direccion.substring(direccion.indexOf(", "), direccion.indexOf(", Colonia "));
+        txtID.setText(id);
         txtNombre.setText(nombre);
         txtTelefono.setText(telefono);
         txtContacto.setText(contacto);
@@ -405,11 +422,26 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
+    private void txtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyTyped
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        
+        if (!numeros)
+        {
+            evt.consume();
+        }
+
+        if (txtNumero.getText().trim().length() == 5) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIDKeyTyped
+
 /**
  *
  * Metodo para limpiar todos los campos de texto
  */
     public void limpiarCampos(){
+        txtID.setText("");
         txtNombre.setText("");
         txtContacto.setText("");
         txtCalle.setText("");
@@ -429,11 +461,12 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         modelo.setRowCount(0);
         for (Cliente prov : productos) {
             Object[] fila = new Object[6];
-            fila[0] = prov.getNombre();
-            fila[1] = prov.getDireccion().toString();
-            fila[2] = prov.getTelefono();
-            fila[3] = prov.getPersonaContacto().getNombre();
-            fila[4] = prov.getActividad();
+            fila[0] = prov.getNumCliente();
+            fila[1] = prov.getNombre();
+            fila[2] = prov.getDireccion().toString();
+            fila[3] = prov.getTelefono();
+            fila[4] = prov.getPersonaContacto().getNombre();
+            fila[5] = prov.getActividad();
             modelo.addRow(fila);
         }
 
@@ -477,7 +510,8 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cmbTipoPublicidad;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -491,6 +525,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtCalle;
     private javax.swing.JTextField txtColonia;
     private javax.swing.JTextField txtContacto;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNumero;
     private javax.swing.JTextField txtTelefono;

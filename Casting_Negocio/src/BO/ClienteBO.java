@@ -21,7 +21,9 @@ public class ClienteBO implements IClienteBO{
     @Override
     public void regsistrar(Cliente cliente){
         if(!(validarClienteExiste(cliente.getNombre()))){
-            clientesDAO.agregar(cliente);
+            if(!validarIDExiste(cliente.getNumCliente())){
+                clientesDAO.agregar(cliente);
+            }
         }
     }
     
@@ -44,6 +46,17 @@ public class ClienteBO implements IClienteBO{
         }
         else{
             JOptionPane.showMessageDialog(null, "Nombre repetido", "Cliente", JOptionPane.ERROR_MESSAGE); 
+            return true;
+        }
+    }
+    
+    @Override
+    public boolean validarIDExiste(long id){
+        if(clientesDAO.consultar(id)==null){
+            return false;
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "ID repetido", "Cliente", JOptionPane.ERROR_MESSAGE); 
             return true;
         }
     }

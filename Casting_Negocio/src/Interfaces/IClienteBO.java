@@ -17,4 +17,5 @@ public interface IClienteBO {
     void eliminar(Cliente cliente);
     List<Cliente> getCliente();
     boolean validarClienteExiste(String nombre);
+    boolean validarIDExiste(long id);
 }

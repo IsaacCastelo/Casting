@@ -53,12 +53,12 @@ public class ClientesDAO implements IClienteDAO {
     }
 
     @Override
-    public Cliente consultar(ObjectId idCliente) {
+    public Cliente consultar(long idCliente) {
         MongoCollection<Cliente> coleccion = this.getColeccion();
         List<Document> etapas = new ArrayList<>();
         etapas.add(new Document()
             .append("$match", new Document()
-                .append("_id", idCliente)));
+                .append("numCliente", idCliente)));
         etapas.add(new Document()
             .append("$lookup", new Document()
                 .append("from", "repartidores")
@@ -67,7 +67,11 @@ public class ClientesDAO implements IClienteDAO {
                 .append("as", "repartidores")));
         List<Cliente> clientes = new LinkedList<>();
         coleccion.aggregate(etapas).into(clientes);
-        return clientes.get(0);
+        if (clientes.isEmpty()){
+            return null;
+        }else{
+            return clientes.get(0);
+        }
     }
     
     @Override
