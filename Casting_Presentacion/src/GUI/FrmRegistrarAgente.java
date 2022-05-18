@@ -5,17 +5,26 @@
  */
 package GUI;
 
+import BO.AgenteBO;
+import Interfaces.IAgenteBO;
+import entidades.Agente;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Kevin
  */
 public class FrmRegistrarAgente extends javax.swing.JFrame {
 
+    IAgenteBO agenteBO = new AgenteBO();
     /**
      * Creates new form FrmRegistrarAgente
      */
     public FrmRegistrarAgente() {
         initComponents();
+        llenarTabla();
     }
 
     /**
@@ -27,6 +36,7 @@ public class FrmRegistrarAgente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -37,88 +47,319 @@ public class FrmRegistrarAgente extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         txtCurp = new javax.swing.JTextField();
-        txtRFC = new javax.swing.JTextField();
+        txtRfc = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaClientes = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
+
+        jLabel8.setText("jLabel8");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setForeground(new java.awt.Color(204, 255, 255));
         jLabel1.setText("ID");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
+        jLabel2.setForeground(new java.awt.Color(204, 255, 255));
         jLabel2.setText("Nombre");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
+        jLabel3.setForeground(new java.awt.Color(204, 255, 255));
         jLabel3.setText("Telefono");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
 
+        jLabel4.setForeground(new java.awt.Color(204, 255, 255));
         jLabel4.setText("Curp");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
 
+        jLabel5.setForeground(new java.awt.Color(204, 255, 255));
         jLabel5.setText("RFC");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(204, 255, 255));
         jLabel6.setText("AGENTE");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, -1, -1));
+
+        txtIDAgente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIDAgenteKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtIDAgente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 109, -1));
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 164, -1));
+
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 164, -1));
+
+        txtCurp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCurpKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtCurp, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 164, -1));
-        getContentPane().add(txtRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 164, -1));
+
+        txtRfc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRfcKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtRfc, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 164, -1));
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Floppy.png"))); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 120, 60));
+        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 70, 60));
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLimpiar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 130, 60));
+        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 80, 60));
 
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Delete.png"))); // NOI18N
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/salir_32_1.gif"))); // NOI18N
         btnSalir.setText("Salir");
+        btnSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 120, 60));
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 70, -1));
+
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Delete.png"))); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
+
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nombre", "Teléfono", "Curp", "RFC"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaClientesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaClientes);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 570, 354));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Fondo.png"))); // NOI18N
         jLabel7.setText("jLabel7");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 410, 530));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 960, 530));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+        if(validarCampos()){
+            Agente agente = new Agente();
+            agente.setNumEmpleado(Long.parseLong(txtIDAgente.getText()));
+            agente.setNombre(txtNombre.getText());
+            agente.setTelefono(txtTelefono.getText());
+            agente.setCurp(txtCurp.getText());
+            agente.setRFC(txtRfc.getText());
+            agenteBO.regsistrar(agente);
+            limpiarCampos();
+            llenarTabla();
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
+        limpiarCampos();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) tablaClientes.getModel();
+        String id = model.getValueAt(tablaClientes.getSelectedRow(), 0).toString();
+        String nombre = model.getValueAt(tablaClientes.getSelectedRow(), 1).toString();
+        String telefono = model.getValueAt(tablaClientes.getSelectedRow(), 2).toString();
+        String curp = model.getValueAt(tablaClientes.getSelectedRow(), 3).toString();
+        String rfc = model.getValueAt(tablaClientes.getSelectedRow(), 4).toString();
+        txtIDAgente.setText(id);
+        txtNombre.setText(nombre);
+        txtTelefono.setText(telefono);
+        txtCurp.setText(curp);
+        txtRfc.setText(rfc);
+    }//GEN-LAST:event_tablaClientesMouseClicked
 
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tablaClientes.getModel();
+        String id = model.getValueAt(tablaClientes.getSelectedRow(), 0).toString();
+        if(id.length()>0){
+            int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el cliente seleccionado?", "Cliente", JOptionPane.YES_NO_OPTION);
+            if(respuesta == 0){
+                Agente agente = new Agente();
+                agente.setNumEmpleado(Long.parseLong(txtIDAgente.getText()));
+                agente.setNombre(txtNombre.getText());
+                agente.setTelefono(txtTelefono.getText());
+                agente.setCurp(txtCurp.getText());
+                agente.setRFC(txtRfc.getText());
+                agenteBO.eliminar(agente);
+            }
+            llenarTabla();
+            limpiarCampos();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Seleccione un cliente", "Cliente", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtIDAgenteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDAgenteKeyTyped
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        
+        if (!numeros)
+        {
+            evt.consume();
+        }
+
+        if (txtIDAgente.getText().trim().length() == 5) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIDAgenteKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+         if (!(minusculas || mayusculas || espacio))
+        {
+            evt.consume();
+        }
+        if (txtNombre.getText().trim().length() == 30) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        
+        if (!numeros)
+        {
+            evt.consume();
+        }
+
+        if (txtTelefono.getText().trim().length() == 15) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtCurpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCurpKeyTyped
+        txtCurp.setText(txtCurp.getText().trim());
+        if (txtCurp.getText().trim().length()== 15){
+                evt.consume(); 
+            }
+    }//GEN-LAST:event_txtCurpKeyTyped
+
+    private void txtRfcKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRfcKeyTyped
+        txtRfc.setText(txtRfc.getText().trim());
+        if (txtRfc.getText().trim().length()== 15){
+                evt.consume(); 
+            }
+    }//GEN-LAST:event_txtRfcKeyTyped
+
+/**
+ *
+ * Metodo para limpiar todos los campos de texto
+ */
+    public void limpiarCampos(){
+        txtIDAgente.setText("");
+        txtNombre.setText("");
+        txtTelefono.setText("");
+        txtCurp.setText("");
+        txtRfc.setText("");
+    }
+    
+    public boolean validarCampos(){
+        if (txtNombre.getText().length() == 0 || txtIDAgente.getText().length() == 0 || txtTelefono.getText().length() == 0 ||
+                txtCurp.getText().length() == 0 || txtRfc.getText().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Campos sin llenar", "Agente", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        else
+            return true;
+    }
+    
+/**
+ *
+ * Metodo para llenar la tabla
+ */
+    public void llenarTabla() {
+        List<Agente> productos = agenteBO.getCliente();
+        DefaultTableModel modelo = (DefaultTableModel) tablaClientes.getModel();
+        modelo.setRowCount(0);
+        for (Agente prov : productos) {
+            Object[] fila = new Object[6];
+            fila[0] = prov.getNumEmpleado();
+            fila[1] = prov.getNombre();
+            fila[2] = prov.getTelefono();
+            fila[3] = prov.getCurp();
+            fila[4] = prov.getRFC();
+            modelo.addRow(fila);
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSalir;
@@ -129,10 +370,13 @@ public class FrmRegistrarAgente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaClientes;
     private javax.swing.JTextField txtCurp;
     private javax.swing.JTextField txtIDAgente;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtRFC;
+    private javax.swing.JTextField txtRfc;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

@@ -41,6 +41,7 @@ public class FrmMenu extends javax.swing.JFrame {
         fileMenu = new javax.swing.JMenu();
         menuRegistrarCasting = new javax.swing.JMenuItem();
         menuRegistrarCliente = new javax.swing.JMenuItem();
+        menuRegistrarAgente = new javax.swing.JMenuItem();
         menuRegistrarPerfil = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         menuBuscarCasting = new javax.swing.JMenuItem();
@@ -75,7 +76,7 @@ public class FrmMenu extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -30, 350, 510));
 
         fileMenu.setMnemonic('f');
-        fileMenu.setText("Nuevo");
+        fileMenu.setText("Registrar");
 
         menuRegistrarCasting.setMnemonic('o');
         menuRegistrarCasting.setText("Registrar Casting");
@@ -94,6 +95,14 @@ public class FrmMenu extends javax.swing.JFrame {
             }
         });
         fileMenu.add(menuRegistrarCliente);
+
+        menuRegistrarAgente.setText("Registrar Agente");
+        menuRegistrarAgente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRegistrarAgenteActionPerformed(evt);
+            }
+        });
+        fileMenu.add(menuRegistrarAgente);
 
         menuRegistrarPerfil.setMnemonic('a');
         menuRegistrarPerfil.setText("Registrar Perfil");
@@ -169,6 +178,11 @@ public class FrmMenu extends javax.swing.JFrame {
         frmBuscarCasting.setVisible(true);
     }//GEN-LAST:event_menuBuscarCastingActionPerformed
 
+    private void menuRegistrarAgenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegistrarAgenteActionPerformed
+        FrmRegistrarAgente frmRegistrarAgente = new FrmRegistrarAgente();
+        frmRegistrarAgente.setVisible(true);
+    }//GEN-LAST:event_menuRegistrarAgenteActionPerformed
+
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
@@ -181,6 +195,7 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuBuscarCasting;
     private javax.swing.JMenuItem menuInformacion;
+    private javax.swing.JMenuItem menuRegistrarAgente;
     private javax.swing.JMenuItem menuRegistrarCasting;
     private javax.swing.JMenuItem menuRegistrarCliente;
     private javax.swing.JMenuItem menuRegistrarPerfil;

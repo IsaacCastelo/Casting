@@ -46,12 +46,12 @@ public class AgenteDAO implements IAgenteDAO{
     }
 
     @Override
-    public Agente consultar(ObjectId idAgente) {
-         MongoCollection<Agente> coleccion = this.getColeccion();
+    public Agente consultar(long idAgente) {
+        MongoCollection<Agente> coleccion = this.getColeccion();
         List<Document> etapas = new ArrayList<>();
         etapas.add(new Document()
             .append("$match", new Document()
-                .append("_id", idAgente)));
+                .append("numEmpleado", idAgente)));
         etapas.add(new Document()
             .append("$lookup", new Document()
                 .append("from", "repartidores")
@@ -60,7 +60,11 @@ public class AgenteDAO implements IAgenteDAO{
                 .append("as", "repartidores")));
         List<Agente> agentes = new LinkedList<>();
         coleccion.aggregate(etapas).into(agentes);
-        return agentes.get(0);
+        if (agentes.isEmpty()) {
+            return null;
+        } else {
+            return agentes.get(0);
+        }
     }
 
     @Override

@@ -66,7 +66,6 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 545, 226));
 
-        btnSalir.setForeground(new java.awt.Color(0, 0, 0));
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/salir_32_1.gif"))); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -80,17 +79,16 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
 
         jLabel1.setForeground(new java.awt.Color(204, 255, 255));
         jLabel1.setText("Código de Casting");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 47, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
 
         jLabel2.setForeground(new java.awt.Color(204, 255, 255));
         jLabel2.setText("Nombre");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 101, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
 
         jLabel3.setForeground(new java.awt.Color(204, 255, 255));
         jLabel3.setText("Fecha de Contratación");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 157, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
-        btnBuscar.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/buscar.png"))); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -102,7 +100,6 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
         });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 252, -1, -1));
 
-        btnLimpiar.setForeground(new java.awt.Color(0, 0, 0));
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -113,9 +110,9 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 252, -1, -1));
-        getContentPane().add(txtCodigoCasting, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 47, 160, -1));
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 97, 160, -1));
-        getContentPane().add(txtFechaContratacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 153, 160, -1));
+        getContentPane().add(txtCodigoCasting, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 160, -1));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 160, -1));
+        getContentPane().add(txtFechaContratacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 160, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Fondo.png"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -152,7 +149,7 @@ public class FrmBuscarCasting extends javax.swing.JFrame {
     
     public boolean validarCampos(){
         if (txtNombre.getText().length() == 0 || txtFechaContratacion.getText().length() == 0 || txtCodigoCasting.getText().length() == 0) {
-            JOptionPane.showMessageDialog(this, "Campos sin llenar", "animal", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Campos sin llenar", "Casting", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         else
