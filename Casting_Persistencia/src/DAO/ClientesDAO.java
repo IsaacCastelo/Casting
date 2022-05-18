@@ -31,7 +31,6 @@ public class ClientesDAO implements IClienteDAO {
     
     @Override
     public boolean agregar(Cliente cliente) {
-        // TODO: MANEJAR POSIBLES EXCEPCIONES...
         MongoCollection<Cliente> coleccion = this.getColeccion();
         coleccion.insertOne(cliente);
         return true;
@@ -39,7 +38,6 @@ public class ClientesDAO implements IClienteDAO {
     
     @Override
     public boolean eliminar(Cliente cliente) {
-        // TODO: MANEJAR POSIBLES EXCEPCIONES...
         MongoCollection<Cliente> coleccion = this.getColeccion();
         coleccion.deleteOne(eq("nombre",cliente.getNombre()));
         return true;
@@ -47,13 +45,9 @@ public class ClientesDAO implements IClienteDAO {
 
     @Override
     public List<Cliente> consultarTodos() {
-        // TODO: MANEJAR POSIBLES EXCEPCIONES...
         MongoCollection<Cliente> coleccion = this.getColeccion();
         List<Cliente> listaClientes = new LinkedList<>();
         coleccion.find(
-            //Filters.and(
-                //Filters.gt("rating", 4), 
-                //Filters.lt("rating", 5))
         ).into(listaClientes);
         return listaClientes;
     }
